@@ -16,3 +16,6 @@ let kScreen_H = UIScreen.main.bounds.size.height
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
+// The background color of the line
+let spliteBgColor = "dddddd"
+
