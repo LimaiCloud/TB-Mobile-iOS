@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09A34E508E8EA18FD77FA2E9 /* libPods-TB-Mobile-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09021C91B3BCFB9478EBA46A /* libPods-TB-Mobile-iOS.a */; };
+		7221AF9C207EFD4C00CBEC1E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7221AF9B207EFD4B00CBEC1E /* LoginViewController.swift */; };
 		728193882074610600A4D5F3 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728193842074610600A4D5F3 /* NavigationController.swift */; };
 		728193892074610600A4D5F3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728193852074610600A4D5F3 /* TabBarController.swift */; };
 		7281938A2074610600A4D5F3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728193872074610600A4D5F3 /* BaseViewController.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		09021C91B3BCFB9478EBA46A /* libPods-TB-Mobile-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TB-Mobile-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7221AF9B207EFD4B00CBEC1E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		728193842074610600A4D5F3 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		728193852074610600A4D5F3 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		728193872074610600A4D5F3 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +57,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7221AF98207EE9D300CBEC1E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7221AF9A207EF28F00CBEC1E /* Controller */,
+				7221AF99207EF28F00CBEC1E /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7221AF99207EF28F00CBEC1E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7221AF9A207EF28F00CBEC1E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7221AF9B207EFD4B00CBEC1E /* LoginViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		72819381207460BF00A4D5F3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +118,7 @@
 		7281938B2074611000A4D5F3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7221AF98207EE9D300CBEC1E /* Login */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -352,6 +379,7 @@
 				728193902074613200A4D5F3 /* API.swift in Sources */,
 				7281939A2074613E00A4D5F3 /* HUDManager.swift in Sources */,
 				728193992074613E00A4D5F3 /* HexString.swift in Sources */,
+				7221AF9C207EFD4C00CBEC1E /* LoginViewController.swift in Sources */,
 				728193882074610600A4D5F3 /* NavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
