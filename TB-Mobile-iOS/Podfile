@@ -3,6 +3,6 @@ target 'TB-Mobile-iOS' do
 pod 'AFNetworking'
 pod 'MBProgressHUD'
 pod 'MJRefresh'
-
+pod 'SDCycleScrollView'
 
 end
