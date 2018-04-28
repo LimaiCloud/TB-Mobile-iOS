@@ -1,9 +1,9 @@
 # TB-Mobile-iOS
-***
-  >= 2 You can find the document at [gitbook](https://www.gitbook.com/book/xudongliu/tb-mobile-development/welcome)
-***  
+
+  &nbsp;&nbsp;You can find the document at [gitbook](https://www.gitbook.com/book/xudongliu/tb-mobile-development/welcome)
+ 
 # Requirements
----
+
   - iOS 9.0+
   - Swift 3.0+ / Swift 4.0+
   
