@@ -10,37 +10,73 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
+   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        // initialization controller
+        self.setUpChildVC()
     }
    
+    // initialization controller
+    func setUpChildVC() {
+        let childArr =  self.childViewControllers
+        
+        let indexVC = childArr[0]
+        let addressVC = childArr[1]
+        let applicaVC = childArr[2]
+        let hompageVC = childArr[3]
+        
+        // index
+        var image:UIImage = UIImage(named: norArr[0])!
+        var selectedimage:UIImage = UIImage(named: selArr[0])!
+        image = image.withRenderingMode(UIImageRenderingMode.alwaysOriginal);
+        selectedimage = selectedimage.withRenderingMode(UIImageRenderingMode.alwaysOriginal);
+        indexVC.tabBarItem.image = image
+        indexVC.tabBarItem.selectedImage = selectedimage
+        // addressbook
+        var addImage:UIImage = UIImage(named: norArr[1])!
+        var addSelmage:UIImage = UIImage(named: selArr[1])!
+        addImage = addImage.withRenderingMode(UIImageRenderingMode.alwaysOriginal);
+        addSelmage = addSelmage.withRenderingMode(UIImageRenderingMode.alwaysOriginal);
+        addressVC.tabBarItem.image = addImage
+        addressVC.tabBarItem.selectedImage = addSelmage
+        // application
+        var appImage:UIImage = UIImage(named: norArr[2])!
+        var appSelImage:UIImage = UIImage(named: selArr[2])!
+        appImage = appImage.withRenderingMode(UIImageRenderingMode.alwaysOriginal);
+        appSelImage = appSelImage.withRenderingMode(UIImageRenderingMode.alwaysOriginal);
+        applicaVC.tabBarItem.image = appImage
+        applicaVC.tabBarItem.selectedImage = appSelImage
+        // mine
+        var homeImage:UIImage = UIImage(named: norArr[3])!
+        var homeSelImage:UIImage = UIImage(named: selArr[3])!
+        homeImage = homeImage.withRenderingMode(UIImageRenderingMode.alwaysOriginal);
+        homeSelImage = homeSelImage.withRenderingMode(UIImageRenderingMode.alwaysOriginal);
+        hompageVC.tabBarItem.image = homeImage
+        hompageVC.tabBarItem.selectedImage = homeSelImage
+        
+        // default color
+        let norDic = NSMutableDictionary()
+        norDic[NSAttributedStringKey.foregroundColor] = UIColor.hexStringToColor(hexString: itemTitleNorColor)
+                
+        self.tabBar.clipsToBounds = true
+        
+        // ViewController
+        indexVC.tabBarItem.setTitleTextAttributes(norDic as? [NSAttributedStringKey : Any], for: .normal)
+        addressVC.tabBarItem.setTitleTextAttributes(norDic as? [NSAttributedStringKey : Any], for: .normal)
+        applicaVC.tabBarItem.setTitleTextAttributes(norDic as? [NSAttributedStringKey : Any], for: .normal)
+        hompageVC.tabBarItem.setTitleTextAttributes(norDic as? [NSAttributedStringKey : Any], for: .normal)
+    }
+    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         // selected colort
         let selDic = NSMutableDictionary()
-        selDic[NSAttributedStringKey.foregroundColor] = UIColor.hexStringToColor(hexString: "29ddd7")
+        selDic[NSAttributedStringKey.foregroundColor] = UIColor.hexStringToColor(hexString: itemTitleSelColor)
         selDic[NSAttributedStringKey.font] = UIFont.systemFont(ofSize: 11.0)
         item.setTitleTextAttributes(selDic as? [NSAttributedStringKey : Any] , for: .selected)
         
-    }
-    func animationWithIndex(_ index: NSInteger) {
-        let tabbarbuttonArray = NSMutableArray()
-
-        for tabBarButton in self.tabBar.subviews {
-            if ((tabBarButton as UIView) .isKind(of: NSClassFromString("UITabBarButton")!)) {
-                tabbarbuttonArray.add(tabBarButton)
-            }
-        }
-        let pulse = CABasicAnimation(keyPath: "transform.scale") 
-        pulse.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        pulse.duration = 0.3;
-        pulse.repeatCount = 1;
-        pulse.autoreverses = true
-        pulse.fromValue = NSNumber(value: 0.7)
-        pulse.toValue = NSNumber(value: 1.3)
-        let tabView = tabbarbuttonArray[index] as! UIView
-        tabView.layer.add(pulse, forKey: nil)
     }
     
     override func didReceiveMemoryWarning() {

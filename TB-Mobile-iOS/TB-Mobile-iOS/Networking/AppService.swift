@@ -28,8 +28,15 @@ class AppService: AFHTTPSessionManager {
     
     static let shareInstance: AppService = {
         let manager = AppService()
+        manager.requestSerializer = AFJSONRequestSerializer()
+        
         let setArr = NSSet(objects: "text/html", "application/json", "text/json")
         manager.responseSerializer.acceptableContentTypes = setArr as? Set<String>
+        
+        // add HttpHeader
+        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
+       manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+        
         manager.requestSerializer.willChangeValue(forKey: "timeoutInterval")
         manager.requestSerializer.timeoutInterval = 30.0
         manager.requestSerializer.didChangeValue(forKey: "timeoutInterval")
@@ -52,11 +59,11 @@ class AppService: AFHTTPSessionManager {
      
      */
 
-    func request(methodType: HTTPMethod, urlString: String, parameters: [String : AnyObject]?, resultBlock:@escaping ([String : Any]?, Error?)->()) {
+    func request(methodType: HTTPMethod, urlString: String, parameters: [String : AnyObject]?, resultBlock:@escaping (Any?, Error?)->()) {
         
         //If the request succeeds, then the error is nil.
         let successBlock = { (task: URLSessionDataTask, responseObj: Any?) in
-            resultBlock(responseObj as? [String : Any], nil)
+            resultBlock(responseObj, nil)
         }
         
         //If the request succeeds, then the error is nil.

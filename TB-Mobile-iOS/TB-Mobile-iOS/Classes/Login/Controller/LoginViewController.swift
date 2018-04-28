@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var usersTF: UITextField!
     
@@ -20,8 +20,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var viewTopConstrant: NSLayoutConstraint!
     // UIButton top Constraint
     @IBOutlet weak var btnTopConstrant: NSLayoutConstraint!
-     // alert
+    // Click on the image to configuration
+    @IBOutlet weak var settingImgView: UIImageView!
+    // alert
      let manager = HUDManager()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +38,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func setupColor() {
         splite1Lab.backgroundColor = UIColor.hexStringToColor(hexString: spliteBgColor)
         splite2Lab.backgroundColor = UIColor.hexStringToColor(hexString: spliteBgColor)
-
+        
+    }
+    
+    // setting button action
+    @IBAction func handleSettingAction(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "APP配置",
+                                                message: "请输入用您的网址", preferredStyle: .alert)
+        alertController.addTextField {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "请输入用您的网址"
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        
+        let okAction = UIAlertAction(title: "确定", style: .default, handler: {
+            action in
+            // require textField value
+            rootURL = alertController.textFields![0].text!
+            print("IP地址：\(rootURL)")
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // login Button
@@ -44,13 +70,52 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.manager.showTips("用户名不能为空", view: self.view)
             return
         }
+        
         if (self.pwdTF.text!.isEmpty) {
             // alert: passWord can't be empty
             self.manager.showTips("密码不能为空", view: self.view)
             return
         }
-        if (!self.usersTF.text!.isEmpty && !self.pwdTF.text!.isEmpty) {
-          
+        
+        if (rootURL.isEmpty) {
+            // alert: rootURL can't be empty
+            self.manager.showTips("您尚未配置你的网址，点击图片进行配置", view: self.view)
+            return
+        }
+        
+        if (!self.usersTF.text!.isEmpty && !self.pwdTF.text!.isEmpty && !rootURL.isEmpty) {
+            usersTF.resignFirstResponder()
+            pwdTF.resignFirstResponder()
+            // show MBProgressHUD
+            self.manager.showHud(self)
+            // Remove the blank space
+            let userStr = self.usersTF.text!.trimmingCharacters(in: .whitespaces)
+            let pwdStr  = self.pwdTF.text!.trimmingCharacters(in: .whitespaces)
+            // Stitching parameters
+            let dic = ["username": userStr, "password": pwdStr] as [String : AnyObject]
+            let apiURL = rootURL + loginURL
+            AppService.shareInstance.request(methodType: .POST, urlString: apiURL, parameters: dic) { (result, error) in
+                if (error == nil) {
+                    // hidden MBProgressHUD
+                    self.manager.hideHud(self)
+                    // save rootURL
+                    userDefault.set(rootURL, forKey: "rootAddress")
+                    userDefault.synchronize()
+                    
+                    let json = JSON(result as Any)
+
+                    print(json)
+                    print("-----%@", json["refreshToken"])
+                    
+                    self.performSegue(withIdentifier: "rootViewController", sender: nil)
+
+                }else {
+                    // false
+                    self.manager.hideHud(self)
+                    self.manager.showTips("网络连接失败", view: self.view)
+                    print("%@", error!)
+                }
+            }
         }
     }
     

@@ -17,7 +17,6 @@ class NavigationController: UINavigationController, UINavigationBarDelegate {
         if (self.responds(to: #selector(getter: edgesForExtendedLayout))) {
             self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
         }
-        self.navigationController?.navigationBar.barTintColor = UIColor.hexStringToColor(hexString: "37DED8")
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {

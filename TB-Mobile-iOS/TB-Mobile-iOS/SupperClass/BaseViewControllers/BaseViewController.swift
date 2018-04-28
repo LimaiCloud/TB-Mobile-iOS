@@ -31,7 +31,7 @@ class BaseViewController: UIViewController {
         }else {
             self.navigationItem.hidesBackButton = true
         }
-         self.navigationController?.navigationBar.barTintColor = UIColor.hexStringToColor(hexString: "37DED8")
+         self.navigationController?.navigationBar.barTintColor = UIColor.hexStringToColor(hexString: "ffffff")
     }
 
     // back action
