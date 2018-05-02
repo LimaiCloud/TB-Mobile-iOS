@@ -13,6 +13,6 @@
 #import "MBProgressHUD.h"
 #import "SDCycleScrollView.h"
 
-#import "SwiftyJSON.h"
+//#import "SwiftyJSON.h"
 
 #endif /* TB_Movile_iOS_Briding_Header_h */

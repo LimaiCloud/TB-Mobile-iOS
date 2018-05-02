@@ -39,8 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         splite1Lab.backgroundColor = UIColor.hexStringToColor(hexString: spliteBgColor)
         splite2Lab.backgroundColor = UIColor.hexStringToColor(hexString: spliteBgColor)
         
-        usersTF.text = "tenant@limaicloud.com"
-        pwdTF.text = "tenant"
+       
     }
     
     // setting button action
@@ -50,7 +49,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         alertController.addTextField {
             (textField: UITextField!) -> Void in
             textField.placeholder = "请输入用您的网址"
-            textField.text = "http://thingsdevice.limaicloud.com"
         }
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
