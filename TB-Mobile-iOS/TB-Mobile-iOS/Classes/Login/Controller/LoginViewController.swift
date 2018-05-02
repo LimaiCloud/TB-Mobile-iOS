@@ -39,7 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         splite1Lab.backgroundColor = UIColor.hexStringToColor(hexString: spliteBgColor)
         splite2Lab.backgroundColor = UIColor.hexStringToColor(hexString: spliteBgColor)
         
-       
+    
     }
     
     // setting button action
