@@ -94,6 +94,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             let pwdStr  = self.pwdTF.text!.trimmingCharacters(in: .whitespaces)
             // Stitching parameters
             let dic = ["username": userStr, "password": pwdStr] as [String : AnyObject]
+            // Determine whether contains http
+            if (!rootURL.contains("http://")) {
+                rootURL = "http://" + rootURL
+            }
+            
             let apiURL = rootURL + loginURL
             AppService.shareInstance.request(methodType: .POST, urlString: apiURL, parameters: dic) { (result, error) in
                 if (error == nil) {
