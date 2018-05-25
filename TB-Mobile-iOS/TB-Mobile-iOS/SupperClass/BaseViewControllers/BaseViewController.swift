@@ -11,7 +11,7 @@ import UIKit
 class BaseViewController: UIViewController {
 
     // alert
-    let Manager = HUDManager()
+    let hudManager = HUDManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class BaseViewController: UIViewController {
         }else {
             self.navigationItem.hidesBackButton = true
         }
-         self.navigationController?.navigationBar.barTintColor = UIColor.hexStringToColor(hexString: "ffffff")
+         self.navigationController?.navigationBar.barTintColor = UIColor.hexStringToColor(hexString: "3783d2")
     }
 
     // back action
@@ -58,6 +58,8 @@ class BaseViewController: UIViewController {
         let backBtn = UIButton(type: .custom)
         backBtn.frame = CGRect(x: 0, y: 0, width: 19, height: 25)
         backBtn.setImage(UIImage(named: "ic_back"), for: .normal)
+        backBtn.setTitle(" 返回", for: .normal)
+        backBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
         backBtn.addTarget(self, action: #selector(backAction), for: .touchUpInside)
         // UIBarButtonItem
         let leftItem = UIBarButtonItem(customView: backBtn)
@@ -80,7 +82,7 @@ class BaseViewController: UIViewController {
     
     // Prompt box class
     func alertManager()->HUDManager {
-        return Manager
+        return hudManager
     }
         
     override func didReceiveMemoryWarning() {

@@ -22,6 +22,7 @@ let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 let userDefault = UserDefaults.standard
 
+
 /**
  *  Global variable --- color
  */
@@ -49,3 +50,10 @@ let selArr: [String] = ["首页-点击状态", "通讯录-点击状态", "应用
 var rootURL = ""
 // login URL
 let loginURL = "/api/auth/login"
+// getDeviceType
+let deviceURL = "/api/device/types"
+
+// Bearere Token
+let bearereToken = "Bearer "
+// token
+var token = ""

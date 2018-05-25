@@ -26,17 +26,17 @@ struct API {
 
 class AppService: AFHTTPSessionManager {
     
-    static let shareInstance: AppService = {
+     static let shareInstance: AppService = {
         let manager = AppService()
         manager.requestSerializer = AFJSONRequestSerializer()
-        
+
         let setArr = NSSet(objects: "text/html", "application/json", "text/json")
         manager.responseSerializer.acceptableContentTypes = setArr as? Set<String>
-        
+
         // add HttpHeader
         manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
-       manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
-        
+        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+
         manager.requestSerializer.willChangeValue(forKey: "timeoutInterval")
         manager.requestSerializer.timeoutInterval = 30.0
         manager.requestSerializer.didChangeValue(forKey: "timeoutInterval")
@@ -78,7 +78,6 @@ class AppService: AFHTTPSessionManager {
         } else {
             post(urlString, parameters: parameters, progress: nil, success: successBlock, failure: failureBlock)
         }
-        
     }
     
 }

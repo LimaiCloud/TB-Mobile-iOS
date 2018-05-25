@@ -14,5 +14,6 @@
 #import "SDCycleScrollView.h"
 
 #import "SwiftyJSON.h"
+#import "SYMoreButtonView.h"
 
 #endif /* TB_Movile_iOS_Briding_Header_h */

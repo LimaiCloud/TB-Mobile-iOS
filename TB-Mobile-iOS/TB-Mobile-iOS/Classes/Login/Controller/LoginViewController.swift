@@ -32,6 +32,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         // setup color
         self.setupColor()
         
+        usersTF.text = "343152747@qq.com"
+        pwdTF.text = "123456"
     }
 
     // setup color
@@ -49,6 +51,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         alertController.addTextField {
             (textField: UITextField!) -> Void in
             textField.placeholder = "请输入用您的网址"
+            textField.text = "http://thingsdevice.limaicloud.com"
         }
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
@@ -104,11 +107,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                 if (error == nil) {
                     // hidden MBProgressHUD
                     self.manager.hideHud(self)
-                    // save rootURL
-                    userDefault.set(rootURL, forKey: "rootAddress")
-                    userDefault.synchronize()
                     
                     let json = JSON(result as Any)
+                    token = json["token"].string!
+                    // save rootURL
+                    userDefault.set(rootURL, forKey: "rootAddress")
+                    userDefault.setValue(token, forKey: "token")
+                    
+                    userDefault.synchronize()
+                    
 
                     print(json)
                     print("-----%@", json["refreshToken"])
