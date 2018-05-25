@@ -24,7 +24,7 @@ static CGFloat const heightSYMoreButtonView = 40.0;
 
 /// show line default no
 @property (nonatomic, assign) BOOL showline;
-/// showlineAnimation default no
+// showlineAnimation default no
 @property (nonatomic, assign) BOOL showlineAnimation;
 /// colorline
 @property (nonatomic, strong) UIColor *colorline;

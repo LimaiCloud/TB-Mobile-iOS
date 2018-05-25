@@ -26,7 +26,7 @@ class DeviceMonitorCell: UITableViewCell {
         
     }
 
-    // assignment model
+    //  assignment model
     func setupModel(_ model: DeviceModel) {
         titleLab.text = model.tenantId.entityType
         userIDLab.text = "租户ID:\(model.tenantId.id!)"

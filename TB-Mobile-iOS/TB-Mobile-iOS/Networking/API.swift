@@ -57,3 +57,4 @@ let deviceURL = "/api/device/types"
 let bearereToken = "Bearer "
 // token
 var token = ""
+//

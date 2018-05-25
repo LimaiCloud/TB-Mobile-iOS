@@ -15,5 +15,6 @@ struct TenantModel {
     init(jsonData: JSON) {
         entityType    = jsonData["entityType"].stringValue
         id = jsonData["id"].stringValue
+        
     }
 }

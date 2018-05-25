@@ -24,7 +24,7 @@ class FunctionCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewD
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        //  Initialization code
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

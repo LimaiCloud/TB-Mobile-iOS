@@ -44,12 +44,12 @@ public class WebServices: NSObject {
  
     func request(methodType: HTTPMethod, urlString: String, parameters: [String : AnyObject]?, resultBlock:@escaping (Any?, Error?)->()) {
         
-        //If the request succeeds, then the error is nil.
+        // If the request succeeds, then the error is nil.
         let successBlock = { (task: URLSessionDataTask, responseObj: Any?) in
             resultBlock(responseObj, nil)
         }
         
-        //If the request succeeds, then the error is nil.
+        // If the request succeeds, then the error is nil.
         let failureBlock = { (task: URLSessionDataTask?, error: Error) in
             resultBlock(nil, error)
         }

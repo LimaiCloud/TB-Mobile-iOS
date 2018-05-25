@@ -18,6 +18,7 @@ struct DeviceModel {
         type = jsonData["type"].stringValue
         tenantId = TenantModel(jsonData: jsonData["tenantId"])
 
+        
     }
     
 }

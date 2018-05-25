@@ -15,7 +15,7 @@ class HomePageController: BaseViewController {
         // Do any additional setup after loading the view.
         
         // set up
-        self.setup()
+//        self.setup()
     }
     
     func setup() {

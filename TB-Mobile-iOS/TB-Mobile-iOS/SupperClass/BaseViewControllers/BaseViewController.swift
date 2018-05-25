@@ -54,7 +54,7 @@ class BaseViewController: UIViewController {
     
     // set up left button
     func setLeftButton() {
-        // create UIButton
+        //  create UIButton
         let backBtn = UIButton(type: .custom)
         backBtn.frame = CGRect(x: 0, y: 0, width: 19, height: 25)
         backBtn.setImage(UIImage(named: "ic_back"), for: .normal)
