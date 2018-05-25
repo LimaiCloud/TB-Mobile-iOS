@@ -28,12 +28,12 @@ class UserInfoCell: UITableViewCell {
         
         self.backgroundColor = UIColor.hexStringToColor(hexString: "f0f5f3")
 
-        // 设置颜色
+        // set up colors
         self.titleLabel.textColor = UIColor.hexStringToColor(hexString: "868e93")
         self.userNameLab.textColor = UIColor.hexStringToColor(hexString: "383f4c")
         self.emailLabel.textColor = UIColor.hexStringToColor(hexString: "868e93")
         self.spliteLabel.textColor = UIColor.hexStringToColor(hexString: "e9eeec")
-        // 消圆角
+        // clips uiview
         self.totalView.layer.cornerRadius = 8
         self.totalView.layer.masksToBounds = true
 

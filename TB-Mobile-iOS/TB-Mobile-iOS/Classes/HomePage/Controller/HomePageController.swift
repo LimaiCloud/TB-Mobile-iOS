@@ -8,11 +8,11 @@
 
 import UIKit
 
-class HomePageController: BaseViewController {
+class HomePageController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
-    // 数组
+    // image array
     let imgArr = ["收藏", "提醒", "红包", "设置"]
     
     override func viewDidLoad() {
@@ -25,6 +25,8 @@ class HomePageController: BaseViewController {
     
     func setup() {
          self.setNavTitle("我的")
+        self.tableView.backgroundColor = UIColor.hexStringToColor(hexString: "f0f5f3")
+
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,7 +42,7 @@ class HomePageController: BaseViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UserInfoCell", for: indexPath) as! UserInfoCell
-            // 赋值
+            // set up values
             cell.setupUI()
             return cell
         }else if (indexPath.section == 1) {

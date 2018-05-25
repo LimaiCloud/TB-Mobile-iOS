@@ -31,6 +31,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 
         // setup color
         self.setupColor()
+        
        
     }
 
