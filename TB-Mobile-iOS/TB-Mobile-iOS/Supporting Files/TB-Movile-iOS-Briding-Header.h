@@ -10,11 +10,13 @@
 #ifndef TB_Movile_iOS_Briding_Header_h
 #define TB_Movile_iOS_Briding_Header_h
 
-#import "AFNetworking.h"
-#import "MBProgressHUD.h"
-#import "SDCycleScrollView.h"
+//#import "AFNetworking.h"
+//#import "MBProgressHUD.h"
+//#import "SDCycleScrollView.h"
 
 #import "SwiftyJSON.h"
 #import "SYMoreButtonView.h"
+#import <Bugly/Bugly.h>
+
 
 #endif /* TB_Movile_iOS_Briding_Header_h */

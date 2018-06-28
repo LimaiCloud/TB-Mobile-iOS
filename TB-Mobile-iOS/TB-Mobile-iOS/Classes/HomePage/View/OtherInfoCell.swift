@@ -12,11 +12,13 @@ class OtherInfoCell: UITableViewCell {
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var spliteLab: UILabel!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        spliteLab.backgroundColor = UIColor.hexStringToColor(hexString: "eeeeee")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

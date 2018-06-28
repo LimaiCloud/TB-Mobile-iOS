@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 // requet type
 enum HTTPMethod {

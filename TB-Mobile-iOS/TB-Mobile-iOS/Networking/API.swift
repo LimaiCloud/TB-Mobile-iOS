@@ -50,11 +50,24 @@ let selArr: [String] = ["首页-点击状态", "通讯录-点击状态", "应用
 var rootURL = ""
 // login URL
 let loginURL = "/api/auth/login"
-// getDeviceType
-let deviceURL = "/api/device/types"
+// acquire device list
+let devicesListURL = "/api/tenant/devices?limit=10&textSearch="
+// detail device
+let websocktURL = "/api/ws/plugins/telemetry?token="
 
 // Bearere Token
 let bearereToken = "Bearer "
 // token
 var token = ""
-//
+
+// tenant
+var tenantURL = "/api/tenant/"
+var dataBoardURL = "/dashboards"
+// dashboard
+var dataURL = "/api/tenant/dashboards?limit=10&textSearch="
+
+// Bugly
+let buglyId = "bb68180a7a"
+
+// web
+let mobile_web = "10.2.5.98/mobile_web"

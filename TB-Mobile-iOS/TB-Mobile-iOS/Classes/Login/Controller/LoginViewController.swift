@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JWTDecode
 
 class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
@@ -32,7 +33,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         // setup color
         self.setupColor()
         
-       
+        
     }
 
     // setup color
@@ -88,6 +89,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         if (!self.usersTF.text!.isEmpty && !self.pwdTF.text!.isEmpty && !rootURL.isEmpty) {
             usersTF.resignFirstResponder()
             pwdTF.resignFirstResponder()
+            userDefault.removeObject(forKey: "token")
+            userDefault.synchronize()
+
+            
             // show MBProgressHUD
             self.manager.showHud(self)
             // Remove the blank space
@@ -98,6 +103,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             // Determine whether contains http
             if (!rootURL.contains("http://")) {
                 rootURL = "http://" + rootURL
+            }else if (!rootURL.contains("https://")) {
+                rootURL = "https://" + rootURL
             }
             
             let apiURL = rootURL + loginURL
@@ -108,15 +115,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                     
                     let json = JSON(result as Any)
                     token = json["token"].string!
+                    
+                    // the token that will be decoded
+                    do {
+                        let jwt = try decode(jwt: token)
+                        print("payload---------%@", jwt)
+                        print("=======%@", jwt.claim(name: "tenantId").string!)
+                        let tenantId = jwt.claim(name: "tenantId").string!
+                        let customerId = jwt.claim(name: "customerId").string!
+                        userDefault.setValue(customerId, forKey: "customerId")
+                        userDefault.setValue(tenantId, forKey: "tenantId")
+                        
+                    }catch {
+                        print("Failed to decode JWT: \(error)")
+                        
+                    }
+                    
                     // save rootURL
                     userDefault.set(rootURL, forKey: "rootAddress")
                     userDefault.setValue(token, forKey: "token")
-                    
                     userDefault.synchronize()
                     
-
                     print(json)
-                    print("-----%@", json["refreshToken"])
                     
                     self.performSegue(withIdentifier: "rootViewController", sender: nil)
 

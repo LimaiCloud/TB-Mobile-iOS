@@ -9,16 +9,20 @@
 import Foundation
 
 struct DeviceModel {
-    var entityType: String?
+    var name: String?
     var type: String?
+    var title: String?
     var tenantId: TenantModel
+    var id: TenantModel
+    var customerId: TenantModel
     
     init(jsonData: JSON) {
-        entityType    = jsonData["entityType"].stringValue
+        name    = jsonData["name"].stringValue
         type = jsonData["type"].stringValue
+        title = jsonData["title"].stringValue
         tenantId = TenantModel(jsonData: jsonData["tenantId"])
+        id = TenantModel(jsonData: jsonData["id"])
+        customerId = TenantModel(jsonData: jsonData["customerId"])
 
-        
-    }
-    
+    } 
 }

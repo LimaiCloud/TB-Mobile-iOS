@@ -7,20 +7,11 @@
 //
 
 import Foundation
+import AFNetworking
 
 public class WebServices: NSObject {
     
     let sessionManager = AFHTTPSessionManager()
-//    let requestSerializer = AFHTTPRequestSerializer()
-//    let responseSerializer = AFHTTPResponseSerializer()
-//    var timeOutInterval: TimeInterval = 30
-//
-//    var runningTasks: [URLSessionDataTask] = [URLSessionDataTask]()
-//    var waitingTasks: [(() -> Void)] = []
-//
-//    //Locked queue used when update access token, access token refresh call should be called only once at a time
-//    private var _isUpdatingAccessToken = false
-//
 
     // Initializer
     public override init() {

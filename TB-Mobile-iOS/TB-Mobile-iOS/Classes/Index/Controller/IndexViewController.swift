@@ -8,7 +8,7 @@
 //
 
 import UIKit
-
+import SDCycleScrollView
 
 class IndexViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, FunctionCellDelegate, SDCycleScrollViewDelegate {
 
@@ -52,6 +52,18 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         self.navigationController?.pushViewController(deviceMonitor, animated: true)
     }
     
+    // dataBoard Action
+    @objc func dataBoardAction(_ sender: UIButton) {
+        let dashBoard = DashBoardsController(nibName: "DashBoardsController", bundle: nil)
+        self.navigationController?.pushViewController(dashBoard, animated: true)
+    }
+    
+    // message Action
+    @objc func messageAction(_ sender: UIButton) {
+        let message = MessageViewController(nibName: "MessageViewController", bundle: nil)
+        self.navigationController?.pushViewController(message, animated: true)
+    }
+    
     // UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -65,6 +77,11 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
             // device monitor
             cell.deviceButton.addTarget(self, action: #selector(deviceMonitorAction(_:)), for: .touchUpInside)
+            // dataBoard
+            cell.dataButton.addTarget(self, action: #selector(dataBoardAction(_:)), for: .touchUpInside)
+            // latest message
+            cell.messageButton.addTarget(self, action: #selector(messageAction(_:)), for: .touchUpInside)
+            
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FunctionCell", for: indexPath) as! FunctionCell
