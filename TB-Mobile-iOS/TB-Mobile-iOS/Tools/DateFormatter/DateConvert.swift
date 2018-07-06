@@ -22,4 +22,17 @@ class DateConvert: NSObject {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: date as Date)
     }
+    
+    class func MonthDateFormatter(_ timeStr: String)-> String {
+        //converted to timeInterval
+        let timeInterval:TimeInterval = TimeInterval(timeStr)!
+        let date = NSDate(timeIntervalSince1970: timeInterval / 1000)
+        // dateFormatter
+        let dateFormatter = DateFormatter()
+        // solve time bug
+        let locale = NSLocale(localeIdentifier: "en_US")
+        dateFormatter.locale = locale as Locale!
+        dateFormatter.dateFormat = "MM-dd"
+        return dateFormatter.string(from: date as Date)
+    }
 }

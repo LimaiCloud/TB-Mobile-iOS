@@ -46,7 +46,19 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
         hudManager.showHud(self)
         
         rootURL = userDefault.object(forKey: "rootAddress") as! String
-        let apiURL = rootURL + dataURL
+        var scope = userDefault.object(forKey: "scopes") as! String
+        let customerId = userDefault.object(forKey: "customerId") as! String
+        var apiURL = ""
+        if (scope == "CUSTOMER_USER") {
+            scope = "customer"
+            apiURL = rootURL + prefixURL + scope + "/\(customerId)/" + suffixURL
+            
+        }else if (scope == "TENANT_ADMIN") {
+            scope = "tenant"
+            apiURL = rootURL + prefixURL + scope + suffixURL
+            
+        }
+//        let apiURL = rootURL + devicesListURL
         
         let manager = WebServices()
         
@@ -56,16 +68,19 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
                 self.hudManager.hideHud(self)
                 
                 let json = JSON(result as Any)
-                let dataArr = json["data"].array!
-                for infoDic in dataArr {
-                    let model = DeviceModel(jsonData: infoDic)
+                let dataArr = json["data"].array
+                for deviceInfo in dataArr! {
+                    let model = DeviceModel(jsonData: deviceInfo)
+                    // add dataSource
                     self.dataSource.add(model)
                 }
+                
+                print("---------%@", self.dataSource)
                 self.tableView.reloadData()
-                print(json)
                 
             }else {
-                print("error----------", error!)
+                self.hudManager.showTips("请求失败", view: self.view)
+                print("%@", error!)
             }
         }
     }
@@ -78,7 +93,7 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardCell", for: indexPath) as! DashboardCell
         let model = self.dataSource[indexPath.row] as! DeviceModel
-        cell.titleLab.text = model.title
+        cell.titleLab.text = model.name
         return cell
     }
     

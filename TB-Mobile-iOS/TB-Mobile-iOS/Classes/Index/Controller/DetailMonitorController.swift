@@ -61,8 +61,8 @@ class DetailMonitorController: BaseViewController, WebSocketDelegate, UITableVie
         print("websocket is connected")
         token = userDefault.object(forKey: "token") as! String
         
-        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"scope\":\"LATEST_TELEMETRY\",\"cmdId\":2}],\"historyCmds\":[],\"attrSubCmds\":[]}")
-
+        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"scope\":\"10\",\"cmdId\":2}],\"historyCmds\":[],\"attrSubCmds\":[]}")
+        
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -78,16 +78,14 @@ class DetailMonitorController: BaseViewController, WebSocketDelegate, UITableVie
         
         let jsonData:Data = text.data(using: .utf8)!
         
-        var jsonDic = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
-        if jsonDic != nil {
-            jsonDic = jsonDic as! NSDictionary
+        let jsonDic = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+        if ((jsonDic as! NSDictionary).object(forKey: "data") is NSNull) {
+            print("data is null")
+        }else {
             let dataDic = (jsonDic as! NSDictionary).object(forKey: "data") as! NSDictionary
             for (key,value): (Any, Any) in dataDic {
                 print("key: %@ ---- value: %@", key, value)
                 dataSource.add(key)
-//                for dataValue in value as! NSArray {
-//                    infoArray.add(dataValue)
-//                }
             }
             for i in 0..<dataSource.count {
                 let value = dataDic.object(forKey: dataSource[i])
@@ -124,12 +122,6 @@ class DetailMonitorController: BaseViewController, WebSocketDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailMonitorCell", for: indexPath) as! DetailMonitorCell
         if (dataSource.count > 0) {
-//            cell.keyLab.text = dataSource[indexPath.row] as? String
-//            let valueArr = infoArray[indexPath.row] as? NSArray
-//            if (valueArr!.count > 0) {
-//                cell.timeLab.text = DateConvert.changeDateFormatter("\(valueArr![0])")
-//                cell.countLab.text = valueArr![1]  as? String
-//            }
             if (indexPath.row == 0) {
                 cell.keyLab.text = dataSource[indexPath.section] as? String
             }

@@ -56,22 +56,14 @@ class HomePageController: BaseViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.alertManager().showTips("暂无数据", view: self.view)
+        if (indexPath.row == 3) {
+            let settingVC = SettingController(nibName: "SettingController", bundle: nil)
+            self.navigationController?.pushViewController(settingVC, animated: true)
+        }else {
+            self.alertManager().showTips("暂无数据", view: self.view)
+        }
         
     }
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headView = UIView(frame: CGRect(x: 0, y: 0, width: kScreen_W, height: 20))
-//        headView.backgroundColor = UIColor.clear
-//        return headView
-//
-//    }
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        if (section == 0) {
-//            return 0
-//        }
-//        return 20
-//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        

@@ -58,6 +58,12 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         self.navigationController?.pushViewController(dashBoard, animated: true)
     }
     
+    // alarm Action
+    @objc func alarmAction(_ sender: UIButton) {
+        let alarmVC = WarningController(nibName: "WarningController", bundle: nil)
+        self.navigationController?.pushViewController(alarmVC, animated: true)
+    }
+    
     // message Action
     @objc func messageAction(_ sender: UIButton) {
         let message = MessageViewController(nibName: "MessageViewController", bundle: nil)
@@ -81,7 +87,9 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
             cell.dataButton.addTarget(self, action: #selector(dataBoardAction(_:)), for: .touchUpInside)
             // latest message
             cell.messageButton.addTarget(self, action: #selector(messageAction(_:)), for: .touchUpInside)
-            
+            // alarmButton
+            cell.alarmButton.addTarget(self, action: #selector(alarmAction(_:)), for: .touchUpInside)
+
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FunctionCell", for: indexPath) as! FunctionCell

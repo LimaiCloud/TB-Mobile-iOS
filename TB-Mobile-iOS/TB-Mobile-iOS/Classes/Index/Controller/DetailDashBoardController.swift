@@ -7,17 +7,19 @@
 //
 
 import UIKit
-import Charts
 import Starscream
 
-class DetailDashBoardController: BaseViewController, WebSocketDelegate {
-
-    @IBOutlet weak var chartView: LineChartView!
+class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+   
     var socket: WebSocket!
     var apiUrl = ""
     var titleStr = ""
     var entityId = ""
+    // dataSource
+    var dataSource =  NSMutableArray()
+    var infoDic = NSMutableDictionary()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,10 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate {
         
         // title
         self.setNavTitle(titleStr)
+        
+        // register cell
+        let nib = UINib(nibName: "DetailDashboardCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "DetailDashboardCell")
         
         token = userDefault.object(forKey: "token") as! String
         rootURL = userDefault.object(forKey: "rootAddress") as! String
@@ -50,7 +56,6 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate {
         print("websocket is connected")
         token = userDefault.object(forKey: "token") as! String
         
-//        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"scope\":\"LATEST_TELEMETRY\",\"cmdId\":2}],\"historyCmds\":[],\"attrSubCmds\":[]}")
         socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"count,state\",\"startTs\":1529549464000,\"timeWindow\":604801000,\"interval\":1000,\"limit\":200,\"agg\":\"NONE\",\"cmdId\":1}],\"historyCmds\":[],\"attrSubCmds\":[]}")
     }
     
@@ -62,28 +67,59 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("got some text: \(text)")
-//        dataSource.removeAllObjects()
-//        infoArray.removeAllObjects()
-//
-//        let jsonData:Data = text.data(using: .utf8)!
-//
-//        var jsonDic = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
-//        if jsonDic != nil {
-//            jsonDic = jsonDic as! NSDictionary
-//            let dataDic = (jsonDic as! NSDictionary).object(forKey: "data") as! NSDictionary
-//            for (key,value): (Any, Any) in dataDic {
-//                print("key: %@ ---- value: %@", key, value)
-//                dataSource.add(key)
-//                for dataValue in value as! NSArray {
-//                    infoArray.add(dataValue)
-//                }
-//            }
-//        }
-//        self.tableView.reloadData()
+
+        dataSource.removeAllObjects()
+        infoDic.removeAllObjects()
+        
+        let jsonData:Data = text.data(using: .utf8)!
+        
+        let jsonDic = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+        if ((jsonDic as! NSDictionary).object(forKey: "data") is NSNull) {
+            print("data is null")
+        }else {
+            let dataDic = (jsonDic as! NSDictionary).object(forKey: "data") as! NSDictionary
+            for (key,value): (Any, Any) in dataDic {
+                print("key: %@ ---- value: %@", key, value)
+                dataSource.add(key)
+            }
+            for i in 0..<dataSource.count {
+                let value = dataDic.object(forKey: dataSource[i])
+                infoDic.setValue(value, forKey: dataSource[i] as! String)
+            }
+        }
+        self.tableView.reloadData()
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("got some data: \(data.count)")
+    }
+    
+    // UITableViewDataSource, UITableViewDelegate
+    func numberOfSections(in tableView: UITableView) -> Int {
+         return dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailDashboardCell", for: indexPath) as! DetailDashboardCell
+        if (dataSource.count > 0) {
+            let countArr = infoDic.object(forKey: dataSource[indexPath.section]) as? NSArray
+            cell.setSubViews(countArr!, type: "\(dataSource[indexPath.section])")
+        }
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 300
     }
 
     override func didReceiveMemoryWarning() {

@@ -54,7 +54,19 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
         hudManager.showHud(self)
         
         rootURL = userDefault.object(forKey: "rootAddress") as! String
-        let apiURL = rootURL + devicesListURL
+        var scope = userDefault.object(forKey: "scopes") as! String
+        let customerId = userDefault.object(forKey: "customerId") as! String
+        var apiURL = ""
+        if (scope == "CUSTOMER_USER") {
+            scope = "customer"
+            apiURL = rootURL + prefixURL + scope + "/\(customerId)/" + suffixURL
+
+        }else if (scope == "TENANT_ADMIN") {
+            scope = "tenant"
+            apiURL = rootURL + prefixURL + scope + suffixURL
+
+        }
+//        let apiURL = rootURL + devicesListURL
         
         let manager = WebServices()
         
@@ -82,7 +94,8 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
                 self.tableView.reloadData()
 
             }else {
-                
+                self.hudManager.showTips("请求失败", view: self.view)
+                print("%@", error!)
             }
         }
     }
@@ -92,7 +105,6 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
     func createSYMoreButtonView() {
         buttonView = SYMoreButtonView(frame: CGRect(x: 0, y: 0, width: kScreen_W - 30, height: 40))
         self.topView .addSubview(buttonView)
-//        buttonView.titles = ["全部", "注塑机", "冲压机", "注塑机", "冲压机", "注塑机", "冲压机"]
         buttonView.titles = self.typeArray
         buttonView.showline = true
         buttonView.showlineAnimation = true

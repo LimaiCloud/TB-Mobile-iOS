@@ -38,6 +38,9 @@ let itemTitleSelColor = "3783d2"
  *  Global variable --- Array
  */
 
+// index
+let alphabets = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","#"]
+
 // default tabbar item imageArr
 let norArr: [String] = ["首页-默认状态", "通讯录-默认状态", "应用-默认状态", "我的-默认状态"]
 // select tabbar item imageArr
@@ -51,6 +54,8 @@ var rootURL = ""
 // login URL
 let loginURL = "/api/auth/login"
 // acquire device list
+let prefixURL = "/api/"
+let suffixURL = "/devices?limit=10&textSearch="
 let devicesListURL = "/api/tenant/devices?limit=10&textSearch="
 // detail device
 let websocktURL = "/api/ws/plugins/telemetry?token="
@@ -71,3 +76,6 @@ let buglyId = "bb68180a7a"
 
 // web
 let mobile_web = "10.2.5.98/mobile_web"
+
+// addressbook
+let contactURL = ""

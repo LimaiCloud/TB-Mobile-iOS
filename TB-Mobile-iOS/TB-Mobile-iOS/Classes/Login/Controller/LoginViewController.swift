@@ -31,17 +31,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         super.viewDidLoad()
 
         // setup color
-        self.setupColor()
-        
-        
+        self.setupViews()
+    
     }
 
     // setup color
-    func setupColor() {
+    func setupViews() {
         splite1Lab.backgroundColor = UIColor.hexStringToColor(hexString: spliteBgColor)
         splite2Lab.backgroundColor = UIColor.hexStringToColor(hexString: spliteBgColor)
         
-    
+        // autoLogin
+        let username = userDefault.object(forKey: "username")
+        if (username != nil) {
+            usersTF.text = username as? String
+            pwdTF.text = userDefault.object(forKey: "password") as? String
+            rootURL = (userDefault.object(forKey: "rootAddress") as? String)!
+            self.loginAction(loginBtn)
+        }
     }
     
     // setting button action
@@ -58,7 +64,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         let okAction = UIAlertAction(title: "确定", style: .default, handler: {
             action in
             // require textField value
-            rootURL = alertController.textFields![0].text!
+            let rootAddress = alertController.textFields![0].text!
+            // Determine whether contains http
+            if (rootAddress.hasPrefix("http://")) {
+                rootURL = rootAddress
+
+            }else {
+                rootURL = "http://" + rootAddress
+            }
             print("IP地址：\(rootURL)")
         })
         alertController.addAction(cancelAction)
@@ -67,7 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
     }
     
     // login Button
-    @IBAction func loginAction(_ sender: UIButton) {
+    @IBAction func loginAction(_ sender: Any) {
         if (self.usersTF.text!.isEmpty) {
             // alert: userName can't be empty
             self.manager.showTips("用户名不能为空", view: self.view)
@@ -96,17 +109,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             // show MBProgressHUD
             self.manager.showHud(self)
             // Remove the blank space
-            let userStr = self.usersTF.text!.trimmingCharacters(in: .whitespaces)
+            var userStr = self.usersTF.text!.trimmingCharacters(in: .whitespaces)
             let pwdStr  = self.pwdTF.text!.trimmingCharacters(in: .whitespaces)
-            // Stitching parameters
-            let dic = ["username": userStr, "password": pwdStr] as [String : AnyObject]
-            // Determine whether contains http
-            if (!rootURL.contains("http://")) {
-                rootURL = "http://" + rootURL
-            }else if (!rootURL.contains("https://")) {
-                rootURL = "https://" + rootURL
-            }
             
+            userDefault.set(self.usersTF.text!, forKey: "username")
+            userDefault.set(self.pwdTF.text!, forKey: "password")
+            
+            // Stitching parameters
+            if (!userStr.contains("@limaicloud.com")) {
+                userStr = userStr + "@limaicloud.com"
+            }
+            let dic = ["username": userStr, "password": pwdStr] as [String : AnyObject]
+
             let apiURL = rootURL + loginURL
             AppService.shareInstance.request(methodType: .POST, urlString: apiURL, parameters: dic) { (result, error) in
                 if (error == nil) {
@@ -125,7 +139,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                         let customerId = jwt.claim(name: "customerId").string!
                         userDefault.setValue(customerId, forKey: "customerId")
                         userDefault.setValue(tenantId, forKey: "tenantId")
-                        
+                        let scopes = jwt.claim(name: "scopes").array!
+                        userDefault.setValue(scopes[0], forKey: "scopes")
+
+                        print("scopes: %@", scopes[0])
                     }catch {
                         print("Failed to decode JWT: \(error)")
                         
@@ -143,7 +160,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                 }else {
                     // false
                     self.manager.hideHud(self)
-                    self.manager.showTips("网络连接失败", view: self.view)
+                    self.manager.showTips("请求失败", view: self.view)
                     print("%@", error!)
                 }
             }
