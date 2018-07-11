@@ -10,7 +10,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
-   
+   var selDic = NSMutableDictionary()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class TabBarController: UITabBarController {
         self.tabBar.clipsToBounds = true
         
         // ViewController
-        indexVC.tabBarItem.setTitleTextAttributes(norDic as? [NSAttributedStringKey : Any], for: .normal)
+        indexVC.tabBarItem.setTitleTextAttributes(selDic as? [NSAttributedStringKey : Any], for: .selected)
         addressVC.tabBarItem.setTitleTextAttributes(norDic as? [NSAttributedStringKey : Any], for: .normal)
         applicaVC.tabBarItem.setTitleTextAttributes(norDic as? [NSAttributedStringKey : Any], for: .normal)
         hompageVC.tabBarItem.setTitleTextAttributes(norDic as? [NSAttributedStringKey : Any], for: .normal)
@@ -72,7 +72,6 @@ class TabBarController: UITabBarController {
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         // selected colort
-        let selDic = NSMutableDictionary()
         selDic[NSAttributedStringKey.foregroundColor] = UIColor.hexStringToColor(hexString: itemTitleSelColor)
         selDic[NSAttributedStringKey.font] = UIFont.systemFont(ofSize: 11.0)
         item.setTitleTextAttributes(selDic as? [NSAttributedStringKey : Any] , for: .selected)
@@ -88,7 +87,7 @@ class TabBarController: UITabBarController {
     /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //  In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

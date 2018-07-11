@@ -22,7 +22,7 @@ class CustomCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        //  Initialization code
         self.splite1Lab.backgroundColor = UIColor.hexStringToColor(hexString: "eeeeee")
         self.splite2Lab.backgroundColor = UIColor.hexStringToColor(hexString: "eeeeee")
     }

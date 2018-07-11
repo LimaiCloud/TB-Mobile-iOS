@@ -47,6 +47,7 @@
   Before the user through a username and password to log in，He/She must be set up on the app. Start the project，He/She will see the login screen, then, Click the picture to configuration the APP URL, for example: http://YOUR_HOST.
   Ok, congratulations ！ The completion of setting.
 
+  ![image](https://github.com/MMing0310/TB-Mobile-iOS/blob/master/TB-Mobile-iOS/TB-Mobile-iOS/Resources/images/login.png)
 
 # License
 

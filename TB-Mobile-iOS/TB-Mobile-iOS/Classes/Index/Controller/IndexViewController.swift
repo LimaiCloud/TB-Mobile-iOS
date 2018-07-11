@@ -2,12 +2,13 @@
 //  IndexViewController.swift
 //  TB-Mobile-iOS
 //
+//
 //  Created by dongmingming on 2018/4/20.
 //  Copyright © 2018年 DongMingMing. All rights reserved.
 //
 
 import UIKit
-
+import SDCycleScrollView
 
 class IndexViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, FunctionCellDelegate, SDCycleScrollViewDelegate {
 
@@ -15,6 +16,11 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         
     @IBOutlet weak var cycleScrollView: SDCycleScrollView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,7 +31,6 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
 
     // set up
     func customView() {
-        self.navigationController?.navigationBar.isHidden = true
 
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
@@ -33,12 +38,36 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
             self.automaticallyAdjustsScrollViewInsets = false
         }
         
-        let imArr = ["banner-1","banner-1"]
+        let imArr = ["banner-1","banner-2"]
         
         cycleScrollView.localizationImageNamesGroup = imArr
         cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         cycleScrollView.autoScrollTimeInterval = 2
 
+    }
+    
+    // device monitor action
+    @objc func deviceMonitorAction(_ sender: UIButton) {
+        let deviceMonitor = DeviceMonitorController(nibName: "DeviceMonitorController", bundle: nil)
+        self.navigationController?.pushViewController(deviceMonitor, animated: true)
+    }
+    
+    // dataBoard Action
+    @objc func dataBoardAction(_ sender: UIButton) {
+        let dashBoard = DashBoardsController(nibName: "DashBoardsController", bundle: nil)
+        self.navigationController?.pushViewController(dashBoard, animated: true)
+    }
+    
+    // alarm Action
+    @objc func alarmAction(_ sender: UIButton) {
+        let alarmVC = WarningController(nibName: "WarningController", bundle: nil)
+        self.navigationController?.pushViewController(alarmVC, animated: true)
+    }
+    
+    // message Action
+    @objc func messageAction(_ sender: UIButton) {
+        let message = MessageViewController(nibName: "MessageViewController", bundle: nil)
+        self.navigationController?.pushViewController(message, animated: true)
     }
     
     // UITableViewDataSource, UITableViewDelegate
@@ -52,7 +81,15 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
             return cell
         }else if (indexPath.row == 1) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-            
+            // device monitor
+            cell.deviceButton.addTarget(self, action: #selector(deviceMonitorAction(_:)), for: .touchUpInside)
+            // dataBoard
+            cell.dataButton.addTarget(self, action: #selector(dataBoardAction(_:)), for: .touchUpInside)
+            // latest message
+            cell.messageButton.addTarget(self, action: #selector(messageAction(_:)), for: .touchUpInside)
+            // alarmButton
+            cell.alarmButton.addTarget(self, action: #selector(alarmAction(_:)), for: .touchUpInside)
+
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FunctionCell", for: indexPath) as! FunctionCell
