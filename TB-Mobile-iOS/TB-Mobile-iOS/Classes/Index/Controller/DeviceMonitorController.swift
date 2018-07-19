@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JWTDecode
 
 class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITableViewDelegate, SYMoreButtonDelegate{
 
@@ -21,6 +22,17 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+
+        let exp = userDefault.object(forKey: "exp") as! Double
+        let currentTime = DateConvert.currentTimeFormatter()
+        if currentTime > exp {
+            // token exptime
+            UpdateToken.refreshToken()
+            NotificationCenter.default.addObserver(self, selector: #selector(updateToken(_:)), name: NSNotification.Name(rawValue: "refreshToken"), object: nil)
+        }else {
+            // Network Requests
+            self.requestData()
+        }
     }
     
     override func viewDidLoad() {
@@ -40,11 +52,12 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
         
         // register cell
         self.registerCell()
-        
+
+    }
+    
+    @objc func updateToken(_ notification: Notification) {
         // Network Requests
         self.requestData()
-
-        
     }
     
     // Network Requests
@@ -52,7 +65,8 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
         
         // show MBProgressHUD
         hudManager.showHud(self)
-        
+        self.dataSource.removeAllObjects()
+
         rootURL = userDefault.object(forKey: "rootAddress") as! String
         var scope = userDefault.object(forKey: "scopes") as! String
         let customerId = userDefault.object(forKey: "customerId") as! String
@@ -69,8 +83,8 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
 //        let apiURL = rootURL + devicesListURL
         
         let manager = WebServices()
-        
         manager.request(methodType: .GET, urlString: apiURL, parameters: nil) { (result, error) in
+           print("===========%@", result!)
             if (error == nil) {
                 // hidden MBProgressHUD
                 self.hudManager.hideHud(self)
@@ -81,8 +95,6 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
                     let model = DeviceModel(jsonData: deviceInfo)
                     // add dataSource
                     self.dataSource.add(model)
-                    // add buttonView.titles
-//                    self.buttonView.titles.append(model.type!)
                     self.typeArray.append(model.type!)
                 }
 
@@ -94,8 +106,8 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
                 self.tableView.reloadData()
 
             }else {
-                self.hudManager.showTips("请求失败", view: self.view)
                 print("%@", error!)
+                self.hudManager.showTips("请求失败", view: self.view)
             }
         }
     }

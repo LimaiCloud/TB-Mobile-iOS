@@ -25,6 +25,7 @@
 		7251189A20A53A22007C1C05 /* SYMoreButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7251189920A53A22007C1C05 /* SYMoreButtonView.m */; };
 		7251189C20A57336007C1C05 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251189B20A57336007C1C05 /* DeviceModel.swift */; };
 		7251189E20A5736A007C1C05 /* TenantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251189D20A5736A007C1C05 /* TenantModel.swift */; };
+		727D25CA20F843F1000593C5 /* UpdateToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D25C920F843F1000593C5 /* UpdateToken.swift */; };
 		728193882074610600A4D5F3 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728193842074610600A4D5F3 /* NavigationController.swift */; };
 		728193892074610600A4D5F3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728193852074610600A4D5F3 /* TabBarController.swift */; };
 		7281938A2074610600A4D5F3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728193872074610600A4D5F3 /* BaseViewController.swift */; };
@@ -93,6 +94,7 @@
 		7251189920A53A22007C1C05 /* SYMoreButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYMoreButtonView.m; sourceTree = "<group>"; };
 		7251189B20A57336007C1C05 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		7251189D20A5736A007C1C05 /* TenantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantModel.swift; sourceTree = "<group>"; };
+		727D25C920F843F1000593C5 /* UpdateToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateToken.swift; sourceTree = "<group>"; };
 		728193842074610600A4D5F3 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		728193852074610600A4D5F3 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		728193872074610600A4D5F3 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				7281938D2074613100A4D5F3 /* AppService.swift */,
 				7281938E2074613100A4D5F3 /* API.swift */,
 				724DC2BF20A4307C00604CD7 /* WebService.swift */,
+				727D25C920F843F1000593C5 /* UpdateToken.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -723,6 +726,7 @@
 				728193982074613E00A4D5F3 /* StringUtil.swift in Sources */,
 				723CF8AB20EB4EC500761F99 /* DetailDashboardCell.swift in Sources */,
 				72B5FC4820EDF8B20073E703 /* ContactModel.swift in Sources */,
+				727D25CA20F843F1000593C5 /* UpdateToken.swift in Sources */,
 				72B5FC4320EDC7640073E703 /* WarningController.swift in Sources */,
 				72A38FB520E47C7400E9A588 /* DetailDashBoardController.swift in Sources */,
 				72D18C9520D8E2B70003FCF9 /* MessageCell.swift in Sources */,
@@ -893,13 +897,15 @@
 			baseConfigurationReference = 9E5B36A2B079E1F22C371BEC /* Pods-TB-Mobile-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VU5UX5CZ83;
+				DEVELOPMENT_TEAM = Q73XH75CY8;
 				INFOPLIST_FILE = "TB-Mobile-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.limaicloud.TB-Mobile-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.limaicloud.tbios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/TB-Mobile-iOS/Supporting Files/TB-Movile-iOS-Briding-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -911,13 +917,16 @@
 			baseConfigurationReference = CBDEA47AA3B9FB02C2FE4A69 /* Pods-TB-Mobile-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VU5UX5CZ83;
+				DEVELOPMENT_TEAM = Q73XH75CY8;
 				INFOPLIST_FILE = "TB-Mobile-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.limaicloud.TB-Mobile-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.limaicloud.tbios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/TB-Mobile-iOS/Supporting Files/TB-Movile-iOS-Briding-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

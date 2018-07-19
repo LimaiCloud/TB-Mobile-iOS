@@ -946,6 +946,9 @@
                                                 <constraint firstAttribute="height" constant="30" id="r9d-XU-73Q"/>
                                             </constraints>
                                             <state key="normal" image="编辑"/>
+                                            <connections>
+                                                <action selector="editAction:" destination="XaC-Oj-d8Z" eventType="touchUpInside" id="Ltu-BG-eDA"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1048,8 +1051,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="oPq-SO-ZKy"/>
                     <connections>
+                        <outlet property="companyStr" destination="vCe-Rp-odh" id="y6F-fx-8gC"/>
                         <outlet property="tableView" destination="3Rj-1D-VYH" id="9hz-Oi-Lat"/>
                         <outlet property="topView" destination="SO5-2c-Rko" id="sEb-zM-CQd"/>
+                        <outlet property="userName" destination="ZQ6-uW-WNS" id="MeB-Oa-gBQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZB-sq-WL4" userLabel="First Responder" sceneMemberID="firstResponder"/>

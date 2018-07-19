@@ -19,7 +19,7 @@ class DateConvert: NSObject {
         // solve time bug
         let locale = NSLocale(localeIdentifier: "en_US")
         dateFormatter.locale = locale as Locale!
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "MM-dd  HH:mm"
         return dateFormatter.string(from: date as Date)
     }
     
@@ -34,5 +34,12 @@ class DateConvert: NSObject {
         dateFormatter.locale = locale as Locale!
         dateFormatter.dateFormat = "MM-dd"
         return dateFormatter.string(from: date as Date)
+    }
+    
+    class func currentTimeFormatter()-> Double {
+        let date = NSDate(timeIntervalSinceNow: 0)
+        let timeInterval:TimeInterval = date.timeIntervalSince1970
+        return timeInterval
+
     }
 }

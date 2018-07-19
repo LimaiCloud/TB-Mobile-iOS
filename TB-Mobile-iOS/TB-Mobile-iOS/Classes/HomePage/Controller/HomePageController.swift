@@ -13,6 +13,9 @@ class HomePageController: BaseViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topView: UIView!
     
+    @IBOutlet weak var companyStr: UILabel!
+    @IBOutlet weak var userName: UILabel!
+    
     // image array
     let imgArr = ["收藏", "提醒", "红包", "设置"]
     
@@ -40,9 +43,14 @@ class HomePageController: BaseViewController, UITableViewDataSource, UITableView
         
         self.tableView.backgroundColor = UIColor.hexStringToColor(hexString: "f7f7f7")
         self.topView.backgroundColor = UIColor.hexStringToColor(hexString: "f7f7f7")
-
+        userName.text = userDefault.object(forKey: "sub") as? String
     }
-
+    
+    @IBAction func editAction(_ sender: UIButton) {
+       
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return imgArr.count

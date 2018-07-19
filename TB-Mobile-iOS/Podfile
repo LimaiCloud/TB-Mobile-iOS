@@ -9,6 +9,6 @@ pod 'Bugly'
 use_frameworks!
 pod 'JWTDecode'
 pod 'Starscream'
-pod 'Charts', '~> 3.0.2'
+pod 'Charts'
 
 end

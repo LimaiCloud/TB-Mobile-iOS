@@ -32,7 +32,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 
         // setup color
         self.setupViews()
-    
+        
+      
     }
 
     // setup color
@@ -116,7 +117,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             userDefault.set(self.pwdTF.text!, forKey: "password")
             
             // Stitching parameters
-            if (!userStr.contains("@limaicloud.com")) {
+            
+            if (!userStr.contains("@limaicloud.com") && !userStr.contains("@qq.com")) {
                 userStr = userStr + "@limaicloud.com"
             }
             let dic = ["username": userStr, "password": pwdStr] as [String : AnyObject]
@@ -141,7 +143,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                         userDefault.setValue(tenantId, forKey: "tenantId")
                         let scopes = jwt.claim(name: "scopes").array!
                         userDefault.setValue(scopes[0], forKey: "scopes")
-
+                        let sub = jwt.claim(name: "sub").string!
+                        userDefault.setValue(sub, forKey: "sub")
+                        let exp = jwt.claim(name: "exp").double
+                        userDefault.setValue(exp, forKey: "exp")
                         print("scopes: %@", scopes[0])
                     }catch {
                         print("Failed to decode JWT: \(error)")

@@ -19,6 +19,17 @@ class AddressViewController: BaseViewController, UITableViewDelegate, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        
+        let exp = userDefault.object(forKey: "exp") as! Double
+        let currentTime = DateConvert.currentTimeFormatter()
+        if currentTime > exp {
+            // token exptime
+            UpdateToken.refreshToken()
+            NotificationCenter.default.addObserver(self, selector: #selector(updateToken(_:)), name: NSNotification.Name(rawValue: "refreshToken"), object: nil)
+        }else {
+            // Network Requests
+            self.requestData()
+        }
     }
     
     override func viewDidLoad() {
@@ -36,8 +47,7 @@ class AddressViewController: BaseViewController, UITableViewDelegate, UITableVie
         self.setRightTitleOnTargetNav(self, action: #selector(createContact), title: "", image: "添加联系人")
         // index
         self.tableView.sectionIndexColor = UIColor.hexStringToColor(hexString: "808080")
-        
-        self.requestData()
+                
     }
     
     // create contact
@@ -45,10 +55,17 @@ class AddressViewController: BaseViewController, UITableViewDelegate, UITableVie
         
     }
 
+    @objc func updateToken(_ notification: Notification) {
+        // Network Requests
+        self.requestData()
+    }
+    
     // request data
     func requestData() {
         // show hudmanager
         self.alertManager().showHud(self)
+        self.allKeys.removeAllObjects()
+        self.addressDic.removeAllObjects()
         
         token = userDefault.object(forKey: "token") as! String
 

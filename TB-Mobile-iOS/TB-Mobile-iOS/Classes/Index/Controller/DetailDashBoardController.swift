@@ -56,18 +56,18 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
         print("websocket is connected")
         token = userDefault.object(forKey: "token") as! String
         
-        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"count,state\",\"startTs\":1529549464000,\"timeWindow\":604801000,\"interval\":1000,\"limit\":200,\"agg\":\"NONE\",\"cmdId\":1}],\"historyCmds\":[],\"attrSubCmds\":[]}")
+        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"daliy#数量,daliy#电量\",\"startTs\":1531380286000,\"timeWindow\":604801000,\"interval\":1000,\"limit\":10,\"agg\":\"NONE\",\"cmdId\":1}],\"historyCmds\":[],\"attrSubCmds\":[]}")
+//        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"daliy#数量,daliy#电量\",\"startTs\":1531980431000,\"timeWindow\":61000,\"interval\":1000,\"limit\":500,\"agg\":\"NONE\",\"cmdId\":2}],\"historyCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"电量,电流\",\"startTs\":1531375694006,\"endTs\":1531980494006,\"interval\":1800000,\"limit\":336,\"agg\":\"MAX\",\"cmdId\":1},{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"电量,电流\",\"startTs\":1500444431000,\"endTs\":1531980431000,\"interval\":1000,\"limit\":1,\"agg\":\"NONE\",\"cmdId\":3}],\"attrSubCmds\":[]}")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("websocket is disconnected: \(String(describing: error?.localizedDescription))")
         // connect
-        socket.connect()
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("got some text: \(text)")
-
+        socket.disconnect()
         dataSource.removeAllObjects()
         infoDic.removeAllObjects()
         
@@ -82,6 +82,7 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
                 print("key: %@ ---- value: %@", key, value)
                 dataSource.add(key)
             }
+
             for i in 0..<dataSource.count {
                 let value = dataDic.object(forKey: dataSource[i])
                 infoDic.setValue(value, forKey: dataSource[i] as! String)
@@ -92,6 +93,7 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("got some data: \(data.count)")
+        
     }
     
     // UITableViewDataSource, UITableViewDelegate
@@ -109,7 +111,7 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
             let countArr = infoDic.object(forKey: dataSource[indexPath.section]) as? NSArray
             cell.setSubViews(countArr!, type: "\(dataSource[indexPath.section])")
         }
-
+       
         return cell
     }
     

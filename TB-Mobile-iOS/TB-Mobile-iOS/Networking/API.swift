@@ -70,12 +70,12 @@ var tenantURL = "/api/tenant/"
 var dataBoardURL = "/dashboards"
 // dashboard
 var dataURL = "/api/tenant/dashboards?limit=10&textSearch="
+// customer
+var customerURL = "/api/customer/"
+let userURL = "/users?limit=10"
 
 // Bugly
 let buglyId = "bb68180a7a"
-
-// web
-let mobile_web = "10.2.5.98/mobile_web"
 
 // addressbook
 let contactURL = ""

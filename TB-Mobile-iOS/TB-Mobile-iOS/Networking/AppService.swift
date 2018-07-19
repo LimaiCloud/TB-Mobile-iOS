@@ -80,5 +80,4 @@ class AppService: AFHTTPSessionManager {
             post(urlString, parameters: parameters, progress: nil, success: successBlock, failure: failureBlock)
         }
     }
-    
 }
