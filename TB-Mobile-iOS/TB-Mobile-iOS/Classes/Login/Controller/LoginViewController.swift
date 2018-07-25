@@ -32,8 +32,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
 
         // setup color
         self.setupViews()
-        
-      
+
     }
 
     // setup color
@@ -46,38 +45,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         if (username != nil) {
             usersTF.text = username as? String
             pwdTF.text = userDefault.object(forKey: "password") as? String
-            rootURL = (userDefault.object(forKey: "rootAddress") as? String)!
             self.loginAction(loginBtn)
         }
     }
     
     // setting button action
     @IBAction func handleSettingAction(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "APP配置",
-                                                message: "请输入用您的网址", preferredStyle: .alert)
-        alertController.addTextField {
-            (textField: UITextField!) -> Void in
-            textField.placeholder = "请输入用您的网址"
-        }
-        
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        
-        let okAction = UIAlertAction(title: "确定", style: .default, handler: {
-            action in
-            // require textField value
-            let rootAddress = alertController.textFields![0].text!
-            // Determine whether contains http
-            if (rootAddress.hasPrefix("http://")) {
-                rootURL = rootAddress
-
-            }else {
-                rootURL = "http://" + rootAddress
-            }
-            print("IP地址：\(rootURL)")
-        })
-        alertController.addAction(cancelAction)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "APP配置",
+//                                                message: "请输入用您的网址", preferredStyle: .alert)
+//        alertController.addTextField {
+//            (textField: UITextField!) -> Void in
+//            textField.placeholder = "请输入用您的网址"
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+//
+//        let okAction = UIAlertAction(title: "确定", style: .default, handler: {
+//            action in
+//            // require textField value
+//            let rootAddress = alertController.textFields![0].text!
+//            // Determine whether contains http
+////            if (rootAddress.hasPrefix("http://")) {
+////                rootURL = rootAddress
+////
+////            }else {
+////                rootURL = "http://" + rootAddress
+////            }
+//            print("IP地址：\(rootURL)")
+//        })
+//        alertController.addAction(cancelAction)
+//        alertController.addAction(okAction)
+//        self.present(alertController, animated: true, completion: nil)
     }
     
     // login Button
@@ -122,7 +120,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                 userStr = userStr + "@limaicloud.com"
             }
             let dic = ["username": userStr, "password": pwdStr] as [String : AnyObject]
-
             let apiURL = rootURL + loginURL
             AppService.shareInstance.request(methodType: .POST, urlString: apiURL, parameters: dic) { (result, error) in
                 if (error == nil) {
@@ -135,8 +132,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                     // the token that will be decoded
                     do {
                         let jwt = try decode(jwt: token)
-                        print("payload---------%@", jwt)
-                        print("=======%@", jwt.claim(name: "tenantId").string!)
+//                        print("payload---------%@", jwt)
+//                        print("=======%@", jwt.claim(name: "tenantId").string!)
                         let tenantId = jwt.claim(name: "tenantId").string!
                         let customerId = jwt.claim(name: "customerId").string!
                         userDefault.setValue(customerId, forKey: "customerId")
@@ -157,9 +154,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                     userDefault.set(rootURL, forKey: "rootAddress")
                     userDefault.setValue(token, forKey: "token")
                     userDefault.synchronize()
-                    
-                    print(json)
-                    
+                                        
                     self.performSegue(withIdentifier: "rootViewController", sender: nil)
 
                 }else {

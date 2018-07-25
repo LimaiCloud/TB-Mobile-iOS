@@ -28,7 +28,6 @@ class AddressBookCell: UITableViewCell {
 
     }
     
-    
     func setupUI(_ model: ContactModel) {
         userName.text = model.name
         rankLab.text = model.title
@@ -40,5 +39,4 @@ class AddressBookCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

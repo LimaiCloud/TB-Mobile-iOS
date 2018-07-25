@@ -83,7 +83,7 @@ class DetailDashboardCell: UITableViewCell, ChartViewDelegate {
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
         
         chartView.xAxis.granularity = 1.0
-        chartView.xAxis.labelPosition = .bothSided
+        chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.drawGridLinesEnabled = false
         
         
@@ -92,7 +92,7 @@ class DetailDashboardCell: UITableViewCell, ChartViewDelegate {
         chartView.rightAxis.enabled = false
 
         chartView.leftAxis.axisMinimum = 0
-        chartView.leftAxis.axisMaximum = 300
+        chartView.leftAxis.axisMaximum = 500
         
         // scale
         chartView.scaleXEnabled = false

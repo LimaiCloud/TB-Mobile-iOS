@@ -69,8 +69,8 @@ class AddressViewController: BaseViewController, UITableViewDelegate, UITableVie
         
         token = userDefault.object(forKey: "token") as! String
 
-        let addressUrl = contactURL + token
-        AppService.shareInstance.request(methodType: .GET, urlString: addressUrl, parameters: nil) { (result, error) in
+        let contactUrl = addressUrl + userToken + token
+        AppService.shareInstance.request(methodType: .GET, urlString: contactUrl, parameters: nil) { (result, error) in
             if (error == nil) {
                 // cancle
                 self.alertManager().hideHud(self)
@@ -196,9 +196,9 @@ class AddressViewController: BaseViewController, UITableViewDelegate, UITableVie
         
         let strPinYin = str.capitalized
       
-        let index = strPinYin.index(strPinYin.startIndex, offsetBy: 1)
-//        strPinYin.index(before: index)
-        return strPinYin.substring(to: index)
+        let index = strPinYin.index(strPinYin.startIndex, offsetBy: 0)
+        return String(strPinYin[index])
+//        return strPinYin.substring(to: index)
     }
     
     override func didReceiveMemoryWarning() {

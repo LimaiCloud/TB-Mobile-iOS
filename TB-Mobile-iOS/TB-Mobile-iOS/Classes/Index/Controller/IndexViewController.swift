@@ -15,10 +15,14 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
         
     @IBOutlet weak var cycleScrollView: SDCycleScrollView!
+    var mar = SXMarquee()
+    var broadCast = ""
+    var link = ""
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+      self.tableView.reloadData()
 
     }
     override func viewDidLoad() {
@@ -29,6 +33,7 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         self.customView()
     }
 
+    
     // set up
     func customView() {
 
@@ -44,6 +49,37 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         cycleScrollView.autoScrollTimeInterval = 2
 
+        self.requestData()
+    }
+    
+    // Network Requests
+    func requestData() {
+        
+        // show MBProgressHUD
+        hudManager.showHud(self)
+        
+        let manager = WebServices()
+        let apiUrl = noticeUrl + broadcastURL
+        manager.request(methodType: .GET, urlString: apiUrl, parameters: nil) { (result, error) in
+            if (error == nil) {
+                // hidden MBProgressHUD
+                self.hudManager.hideHud(self)
+                
+                let json = JSON(result as Any)
+                let dataArr = json.array
+                for infoDic in dataArr! {
+                    let contentDic = infoDic["title"].dictionary
+                    self.broadCast = (contentDic!["rendered"]?.string)!
+                    self.link = infoDic["link"].string!
+                }
+                
+                self.tableView.reloadData()
+                
+            }else {
+                print("%@", error!)
+                self.hudManager.showTips("请求失败", view: self.view)
+            }
+        }
     }
     
     // device monitor action
@@ -54,8 +90,10 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
     
     // dataBoard Action
     @objc func dataBoardAction(_ sender: UIButton) {
-        let dashBoard = DashBoardsController(nibName: "DashBoardsController", bundle: nil)
-        self.navigationController?.pushViewController(dashBoard, animated: true)
+//        let dashBoard = DashBoardsController(nibName: "DashBoardsController", bundle: nil)
+//        self.navigationController?.pushViewController(dashBoard, animated: true)
+        let analyzeVC = AnalyzeDataController(nibName: "AnalyzeDataController", bundle: nil)
+        self.navigationController?.pushViewController(analyzeVC, animated: true)
     }
     
     // alarm Action
@@ -77,7 +115,13 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BroadcastCell", for: indexPath) as! BroadcastCell
+            let cell  = tableView.dequeueReusableCell(withIdentifier: "BroadcastCell", for: indexPath) as! BroadcastCell
+            
+            mar = SXMarquee(frame: CGRect(x: 0, y: 0, width: kScreen_W - 120, height: 30), speed: SXMarqueeSpeedLevel(rawValue: 10)!, msg: self.broadCast)
+            mar.changeLabel(UIFont.systemFont(ofSize: 15.0))
+            cell.messageView.addSubview(self.mar)
+            mar.start()
+            mar.isUserInteractionEnabled = false
             return cell
         }else if (indexPath.row == 1) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
@@ -105,6 +149,15 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
             return 120
         }
         return 300
+    }
+    
+    // UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.row == 0) {
+            let boardVC = BoardCastController(nibName: "BoardCastController", bundle: nil)
+            boardVC.webUrl = self.link
+            self.navigationController?.pushViewController(boardVC, animated: true)
+        }
     }
     
     // FunctionCellDelegate

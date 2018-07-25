@@ -43,10 +43,8 @@ class DetailMonitorController: BaseViewController, WebSocketDelegate, UITableVie
         self.view.backgroundColor = UIColor.hexStringToColor(hexString: "f7f7f7")
             
         token = userDefault.object(forKey: "token") as! String
-        rootURL = userDefault.object(forKey: "rootAddress") as! String
         let urlArr = rootURL.components(separatedBy: "//")
         
-        print("apiUrl ===== %@", websocktURL + token)
         apiUrl = "ws://\(urlArr.last!)" + websocktURL + token
         let request = URLRequest(url: URL(string: apiUrl)!)
         socket = WebSocket(request: request)
@@ -67,15 +65,14 @@ class DetailMonitorController: BaseViewController, WebSocketDelegate, UITableVie
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("websocket is disconnected: \(String(describing: error?.localizedDescription))")
-        // connect
-        socket.connect()
+      
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("got some text: \(text)")
         dataSource.removeAllObjects()
         infoArray.removeAllObjects()
-        
+        socket.disconnect()
         let jsonData:Data = text.data(using: .utf8)!
         
         let jsonDic = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)

@@ -38,17 +38,15 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
         tableView.register(nib, forCellReuseIdentifier: "DetailDashboardCell")
         
         token = userDefault.object(forKey: "token") as! String
-        rootURL = userDefault.object(forKey: "rootAddress") as! String
         let urlArr = rootURL.components(separatedBy: "//")
         
-        print("apiUrl ===== %@", websocktURL + token)
         apiUrl = "ws://\(urlArr.last!)" + websocktURL + token
         let request = URLRequest(url: URL(string: apiUrl)!)
         socket = WebSocket(request: request)
         socket.delegate = self
         //you could do onPong as well.
         socket.connect()
-        
+
     }
     
     // WebSocketDelegate
@@ -56,8 +54,9 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
         print("websocket is connected")
         token = userDefault.object(forKey: "token") as! String
         
-        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"daliy#数量,daliy#电量\",\"startTs\":1531380286000,\"timeWindow\":604801000,\"interval\":1000,\"limit\":10,\"agg\":\"NONE\",\"cmdId\":1}],\"historyCmds\":[],\"attrSubCmds\":[]}")
-//        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"daliy#数量,daliy#电量\",\"startTs\":1531980431000,\"timeWindow\":61000,\"interval\":1000,\"limit\":500,\"agg\":\"NONE\",\"cmdId\":2}],\"historyCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"电量,电流\",\"startTs\":1531375694006,\"endTs\":1531980494006,\"interval\":1800000,\"limit\":336,\"agg\":\"MAX\",\"cmdId\":1},{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"电量,电流\",\"startTs\":1500444431000,\"endTs\":1531980431000,\"interval\":1000,\"limit\":1,\"agg\":\"NONE\",\"cmdId\":3}],\"attrSubCmds\":[]}")
+        let startTime = Int(DateConvert.currentTimeFormatter() * 1000 - 7 * 24 * 60 * 60 * 1000)
+        let dayTime = 7 * 24 * 60 * 60 * 1000
+        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"daliy#数量,daliy#电量\",\"startTs\":\(startTime),\"timeWindow\":\(dayTime),\"interval\":1000,\"limit\":10,\"agg\":\"NONE\",\"cmdId\":1}],\"historyCmds\":[],\"attrSubCmds\":[]}")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -109,7 +108,7 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailDashboardCell", for: indexPath) as! DetailDashboardCell
         if (dataSource.count > 0) {
             let countArr = infoDic.object(forKey: dataSource[indexPath.section]) as? NSArray
-            cell.setSubViews(countArr!, type: "\(dataSource[indexPath.section])")
+            cell.setSubViews(countArr!.reversed() as NSArray, type: "\(dataSource[indexPath.section])")
         }
        
         return cell

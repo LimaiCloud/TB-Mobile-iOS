@@ -50,7 +50,7 @@ let selArr: [String] = ["首页-点击状态", "通讯录-点击状态", "应用
  *  Global variable --- API URL
  */
 // root URL
-var rootURL = ""
+let rootURL = UrlManager.manager()["base"]!
 // login URL
 let loginURL = "/api/auth/login"
 // acquire device list
@@ -78,4 +78,11 @@ let userURL = "/users?limit=10"
 let buglyId = "bb68180a7a"
 
 // addressbook
-let contactURL = ""
+let addressUrl = UrlManager.manager()["contacts"]!
+let userToken = "/users?token="
+
+// serverTime
+let serverTimeURL = "/api/dashboard/serverTime"
+// broadcast
+let noticeUrl = UrlManager.manager()["notice"]!
+let broadcastURL = "/qiyue/wp-json/wp/v2/posts"

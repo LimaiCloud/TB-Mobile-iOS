@@ -14,7 +14,6 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
     // dataSource
     var dataSource =  NSMutableArray()
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
@@ -61,7 +60,6 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
         hudManager.showHud(self)
         self.dataSource.removeAllObjects()
         
-        rootURL = userDefault.object(forKey: "rootAddress") as! String
         var scope = userDefault.object(forKey: "scopes") as! String
         let customerId = userDefault.object(forKey: "customerId") as! String
         var apiURL = ""
@@ -74,7 +72,6 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
             apiURL = rootURL + prefixURL + scope + suffixURL
             
         }
-//        let apiURL = rootURL + devicesListURL
         
         let manager = WebServices()
         
@@ -91,7 +88,6 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
                     self.dataSource.add(model)
                 }
                 
-                print("---------%@", self.dataSource)
                 self.tableView.reloadData()
                 
             }else {

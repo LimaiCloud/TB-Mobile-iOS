@@ -10,10 +10,8 @@ import UIKit
 
 class BroadcastCell: UITableViewCell {
 
-    @IBOutlet weak var messageLab: UILabel!
     @IBOutlet weak var timeLab: UILabel!
-    
-    
+    @IBOutlet weak var messageView: UIView!
     
     
     override func awakeFromNib() {

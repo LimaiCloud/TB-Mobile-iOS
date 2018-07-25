@@ -67,7 +67,6 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
         hudManager.showHud(self)
         self.dataSource.removeAllObjects()
 
-        rootURL = userDefault.object(forKey: "rootAddress") as! String
         var scope = userDefault.object(forKey: "scopes") as! String
         let customerId = userDefault.object(forKey: "customerId") as! String
         var apiURL = ""
@@ -80,11 +79,9 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
             apiURL = rootURL + prefixURL + scope + suffixURL
 
         }
-//        let apiURL = rootURL + devicesListURL
         
         let manager = WebServices()
         manager.request(methodType: .GET, urlString: apiURL, parameters: nil) { (result, error) in
-           print("===========%@", result!)
             if (error == nil) {
                 // hidden MBProgressHUD
                 self.hudManager.hideHud(self)
@@ -98,8 +95,6 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
                     self.typeArray.append(model.type!)
                 }
 
-                print("---------%@", self.dataSource)
-                print("=========%@", self.buttonView.titles)
                 // create SYMoreButtonView
                 self.createSYMoreButtonView()
                 
