@@ -32,8 +32,15 @@
     pod 'MBProgressHUD'
     pod 'MJRefresh'
     pod 'SDCycleScrollView'
+    pod 'Bugly'
 
+    use_frameworks!
+    pod 'JWTDecode'
+    pod 'Starscream'
+    pod 'Charts','3.1.1'
+    
     end
+
    ```
 ### Podfile
 
