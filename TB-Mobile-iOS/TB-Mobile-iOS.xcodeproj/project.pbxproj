@@ -34,6 +34,7 @@
 		7251189A20A53A22007C1C05 /* SYMoreButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7251189920A53A22007C1C05 /* SYMoreButtonView.m */; };
 		7251189C20A57336007C1C05 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251189B20A57336007C1C05 /* DeviceModel.swift */; };
 		7251189E20A5736A007C1C05 /* TenantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251189D20A5736A007C1C05 /* TenantModel.swift */; };
+		726705F52109629400E00F52 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 726705F42109629400E00F52 /* address.plist */; };
 		727D25CA20F843F1000593C5 /* UpdateToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727D25C920F843F1000593C5 /* UpdateToken.swift */; };
 		728193882074610600A4D5F3 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728193842074610600A4D5F3 /* NavigationController.swift */; };
 		728193892074610600A4D5F3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728193852074610600A4D5F3 /* TabBarController.swift */; };
@@ -53,7 +54,6 @@
 		7283919121056B8E0070656B /* bundle.897b646d204a361b42e8.js in Resources */ = {isa = PBXBuildFile; fileRef = 7283918E21056B8E0070656B /* bundle.897b646d204a361b42e8.js */; };
 		7283919421056DC30070656B /* AnalyzeDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283919221056DC30070656B /* AnalyzeDataController.swift */; };
 		7283919521056DC30070656B /* AnalyzeDataController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7283919321056DC30070656B /* AnalyzeDataController.xib */; };
-		728391972105ACCB0070656B /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 728391962105ACCB0070656B /* address.plist */; };
 		728391A32105B9320070656B /* UrlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728391A22105B9320070656B /* UrlManager.swift */; };
 		72A38FB520E47C7400E9A588 /* DetailDashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A38FB320E47C7400E9A588 /* DetailDashBoardController.swift */; };
 		72A38FB620E47C7400E9A588 /* DetailDashBoardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A38FB420E47C7400E9A588 /* DetailDashBoardController.xib */; };
@@ -127,6 +127,7 @@
 		7251189920A53A22007C1C05 /* SYMoreButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYMoreButtonView.m; sourceTree = "<group>"; };
 		7251189B20A57336007C1C05 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		7251189D20A5736A007C1C05 /* TenantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantModel.swift; sourceTree = "<group>"; };
+		726705F42109629400E00F52 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		727D25C920F843F1000593C5 /* UpdateToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateToken.swift; sourceTree = "<group>"; };
 		728193842074610600A4D5F3 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		728193852074610600A4D5F3 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -147,7 +148,6 @@
 		7283918E21056B8E0070656B /* bundle.897b646d204a361b42e8.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bundle.897b646d204a361b42e8.js; sourceTree = "<group>"; };
 		7283919221056DC30070656B /* AnalyzeDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeDataController.swift; sourceTree = "<group>"; };
 		7283919321056DC30070656B /* AnalyzeDataController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnalyzeDataController.xib; sourceTree = "<group>"; };
-		728391962105ACCB0070656B /* address.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		728391A22105B9320070656B /* UrlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlManager.swift; sourceTree = "<group>"; };
 		72A38FB320E47C7400E9A588 /* DetailDashBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDashBoardController.swift; sourceTree = "<group>"; };
 		72A38FB420E47C7400E9A588 /* DetailDashBoardController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailDashBoardController.xib; sourceTree = "<group>"; };
@@ -307,7 +307,6 @@
 				7281938E2074613100A4D5F3 /* API.swift */,
 				724DC2BF20A4307C00604CD7 /* WebService.swift */,
 				727D25C920F843F1000593C5 /* UpdateToken.swift */,
-				728391962105ACCB0070656B /* address.plist */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -436,6 +435,7 @@
 		728391982105AEF80070656B /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				726705F42109629400E00F52 /* address.plist */,
 				728391A22105B9320070656B /* UrlManager.swift */,
 			);
 			path = Configuration;
@@ -721,7 +721,7 @@
 				72D18C9620D8E2B70003FCF9 /* MessageCell.xib in Resources */,
 				724C31902101BC0F00910F38 /* BoardCastController.xib in Resources */,
 				72B5FC4420EDC7640073E703 /* WarningController.xib in Resources */,
-				728391972105ACCB0070656B /* address.plist in Resources */,
+				726705F52109629400E00F52 /* address.plist in Resources */,
 				723CF8B420EB737F00761F99 /* SettingCell.xib in Resources */,
 				723CF8B020EB72D200761F99 /* SettingController.xib in Resources */,
 				72B3243E20D35E6900B83EF0 /* DashBoardsController.xib in Resources */,

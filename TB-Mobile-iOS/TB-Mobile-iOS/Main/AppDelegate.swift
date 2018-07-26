@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Bugly.start(withAppId: buglyId)
 
-        URLProtocol.registerClass(MyURLProtocol.self)
-
         return true
     }
 
@@ -98,6 +96,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    // Retrieve the cache request
+    func cachedResponseForCurrentRequest(_ url: String) -> NSManagedObject? {
+        // Obtain the data management context
+        let app = UIApplication.shared.delegate as! AppDelegate
+        if #available(iOS 10.0, *) {
+            let context = app.persistentContainer.viewContext
+            // // create NSManagedObject instance to match the Xcdatamodeld files in the corresponding data model。
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+            let entity = NSEntityDescription.entity(forEntityName: "CachedURLResponse",
+                                                    in: context)
+            fetchRequest.entity = entity
+            
+            // Set the query conditions
+            let predicate = NSPredicate(format:"url == %@", url)
+            fetchRequest.predicate = predicate
+            print(predicate)
+            // Perform the get request
+            do {
+                let possibleResult = try context.fetch(fetchRequest)
+                    as? Array<NSManagedObject>
+                if let result = possibleResult {
+                    if !result.isEmpty {
+                        return result[0]
+                    }
+                }
+            }
+            catch {
+                print("获取缓存数据失败：\(error)")
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        return nil
+    }
 
 }
 

@@ -11,39 +11,46 @@ import CoreData
 import WebKit
 import JavaScriptCore
 
-class AnalyzeDataController: BaseViewController, WKNavigationDelegate, WKUIDelegate {
+class AnalyzeDataController: BaseViewController, UIWebViewDelegate {
     
-    var wkWebview: WKWebView!
+//    var wkWebview: WKWebView!
+    
+    @IBOutlet weak var webView: UIWebView!
+    var myRequest: URLRequest!
+//    var webUrl = "\(rootURL)/static/bundle.897b646d204a361b42e8.js"
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        
+        URLProtocol.registerClass(MyURLProtocol.self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        URLProtocol.unregisterClass(MyURLProtocol.self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
+        // Do any additional setup after loading the view.
         // title
         self.setNavTitle("数据看板")
-
-        print("+++++ 将原始数据缓存起来 +++++")
+        let url = URL(string:rootURL)
+        myRequest = URLRequest(url: url!)
+        
         // Appdelegate
         let app = UIApplication.shared.delegate as! AppDelegate
-        if #available(iOS 10.0, *) {
-            let context = app.persistentContainer.viewContext
-            // The root directory
-            var filePath = NSHomeDirectory()
-            let fileManager = FileManager.default
-            print("%@", filePath)
-            // js path
-            filePath = filePath + "bundle.897b646d204a361b42e8.js"
-            
-            if fileManager.fileExists(atPath: filePath) {
-                // exist
-                
-            }else {
+      
+//        let myProtocol = MyURLProtocol(request: myRequest, cachedResponse: nil, client: nil)
+//        let possibleCachedResponse = myProtocol.cachedResponseForCurrentRequest()
+        
+        let possibleCachedResponse = app.cachedResponseForCurrentRequest(webUrl)
+        if possibleCachedResponse == nil {
+            if #available(iOS 10.0, *) {
+                let context = app.persistentContainer.viewContext
                 // no exist
                 // create NSManagedObject instance to match the Xcdatamodeld files in the corresponding data model。
                 let cachedResponse = NSEntityDescription
@@ -66,74 +73,79 @@ class AnalyzeDataController: BaseViewController, WKNavigationDelegate, WKUIDeleg
                 }
                 
                 // save (Core Data, the Data should be placed in the main thread, or concurrency is easy to collapse)
-                DispatchQueue.main.async(execute: {
-                    do {
-                        try context.save()
-                        print("保存成功")
-                    } catch {
-                        print("不能保存：\(error)")
-                    }
-                })
+//                DispatchQueue.main.async(execute: {
+//                    do {
+//                        try context.save()
+//                    } catch {
+//                        print("不能保存：\(error)")
+//                    }
+//                })
             }
-
-        } else {
-            // Fallback on earlier versions
         }
-        
+       
         self.req()
     }
 
     func req() {
+//        let url = URL(string:rootURL)
+//        myRequest = URLRequest(url: url!)
+        webView.loadRequest(myRequest)
         
-        let webConfiguration = WKWebViewConfiguration()
-
-        let url = URL(string:rootURL)
-
-        wkWebview = WKWebView(frame: CGRect(x: 0, y: -60, width: kScreen_W, height: kScreen_H + 60), configuration: webConfiguration)
-        wkWebview.navigationDelegate = self
-        wkWebview.uiDelegate = self
-
-        let myRequest = URLRequest(url: url!)
-        wkWebview.load(myRequest)
-        self.view.addSubview(wkWebview)
+//        let webConfiguration = WKWebViewConfiguration()
+//
+//        let url = URL(string:rootURL)
+//
+//        wkWebview = WKWebView(frame: CGRect(x: 0, y: -60, width: kScreen_W, height: kScreen_H + 60), configuration: webConfiguration)
+//        wkWebview.navigationDelegate = self
+//        wkWebview.uiDelegate = self
+//
+//        let myRequest = URLRequest(url: url!)
+//        wkWebview.load(myRequest)
+//        self.view.addSubview(wkWebview)
         
         // show MBProgressHUD
         hudManager.showHud(self)
         
     }
     
-    // success
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // hidden MBProgressHUD
+    // UIWebViewDelegate
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         self.hudManager.hideHud(self)
-        /// wkWebView调用js方法
-        let js = "document.getElementsById('username-input').value = 'qiyue@limaicloud.com';"
-//        let js = "document.getElementById('username-input').value = 'qiyue@limaicloud.com';document.getElementById('password-input').value = '123456';document.getElementsByTagName('button')[0].click();"
-//        let js = "document.getElementById('kw').value = 'qiyue@limaicloud.com';"
-        wkWebview.evaluateJavaScript(js) { (response, error) in
-            print("response:", response ?? "No Response", "\n", "error:", error ?? "No Error")
-        }
-      
     }
     
-    // fail
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        
-    }
+    // success
+//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+//        // hidden MBProgressHUD
+//        self.hudManager.hideHud(self)
+//        /// wkWebView调用js方法
+//        let js = "document.getElementsById('username-input').value = 'qiyue@limaicloud.com';"
+////        let js = "document.getElementById('username-input').value = 'qiyue@limaicloud.com';document.getElementById('password-input').value = '123456';document.getElementsByTagName('button')[0].click();"
+////        let js = "document.getElementById('kw').value = 'qiyue@limaicloud.com';"
+//        wkWebview.evaluateJavaScript(js) { (response, error) in
+//            print("response:", response ?? "No Response", "\n", "error:", error ?? "No Error")
+//        }
+//
+//    }
+//
+//    // fail
+//    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+//
+//    }
+//
+//    // WKUIDelegate
+//    func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+//        print("=======%@-------%@", prompt, defaultText!)
+//    }
+//
+//    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+//
+//    }
+//
+//    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+//        print("=======%@-------", message)
+//
+//    }
     
-    // WKUIDelegate
-    func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
-        print("=======%@-------%@", prompt, defaultText!)
-    }
-    
-    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-        
-    }
-    
-    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
-        print("=======%@-------", message)
-
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

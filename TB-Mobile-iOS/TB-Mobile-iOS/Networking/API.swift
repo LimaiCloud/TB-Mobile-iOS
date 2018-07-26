@@ -86,3 +86,6 @@ let serverTimeURL = "/api/dashboard/serverTime"
 // broadcast
 let noticeUrl = UrlManager.manager()["notice"]!
 let broadcastURL = "/qiyue/wp-json/wp/v2/posts"
+
+// loading js
+let webUrl = "\(rootURL)/static/bundle.897b646d204a361b42e8.js"

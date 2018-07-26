@@ -92,13 +92,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
             return
         }
         
-        if (rootURL.isEmpty) {
-            // alert: rootURL can't be empty
-            self.manager.showTips("您尚未配置你的网址，点击图片进行配置", view: self.view)
-            return
-        }
+//        if (rootURL.isEmpty) {
+//            // alert: rootURL can't be empty
+//            self.manager.showTips("您尚未配置你的网址，点击图片进行配置", view: self.view)
+//            return
+//        }
         
-        if (!self.usersTF.text!.isEmpty && !self.pwdTF.text!.isEmpty && !rootURL.isEmpty) {
+        if (!self.usersTF.text!.isEmpty && !self.pwdTF.text!.isEmpty) {
             usersTF.resignFirstResponder()
             pwdTF.resignFirstResponder()
             userDefault.removeObject(forKey: "token")

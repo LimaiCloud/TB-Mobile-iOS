@@ -4,7 +4,7 @@ import CoreData
 // requestCount
 var requestCount = 0
 
-class MyURLProtocol: URLProtocol , URLSessionDataDelegate, URLSessionTaskDelegate{
+ class MyURLProtocol: URLProtocol , URLSessionDataDelegate, URLSessionTaskDelegate{
     
     // URLSession request data task
     var dataTask:URLSessionDataTask?
@@ -121,9 +121,8 @@ class MyURLProtocol: URLProtocol , URLSessionDataDelegate, URLSessionTaskDelegat
         print("+++++ 将获取到的数据缓存起来 +++++")
         
         // appdelegate
-        let app = UIApplication.shared.delegate as! AppDelegate
         if #available(iOS 10.0, *) {
-            let context = app.persistentContainer.viewContext
+            let context = appDelegate.persistentContainer.viewContext
             // create NSManagedObject instance to match the Xcdatamodeld files in the corresponding data model。
             let cachedResponse = NSEntityDescription
                 .insertNewObject(forEntityName: "CachedURLResponse",
@@ -151,9 +150,8 @@ class MyURLProtocol: URLProtocol , URLSessionDataDelegate, URLSessionTaskDelegat
     func saveOriCachedResponse () {
         print("+++++ 将原始数据缓存起来 +++++")
         
-        let app = UIApplication.shared.delegate as! AppDelegate
         if #available(iOS 10.0, *) {
-            let context = app.persistentContainer.viewContext
+            let context = appDelegate.persistentContainer.viewContext
             // write data
             var filePath = NSHomeDirectory()
             // filepath
@@ -185,23 +183,23 @@ class MyURLProtocol: URLProtocol , URLSessionDataDelegate, URLSessionTaskDelegat
     
     
     
-    //检索缓存请求
+    // Retrieve the cache request
     func cachedResponseForCurrentRequest() -> NSManagedObject? {
-        //获取管理的数据上下文 对象
-        let app = UIApplication.shared.delegate as! AppDelegate
+        // Obtain the data management context
         if #available(iOS 10.0, *) {
-            let context = app.persistentContainer.viewContext
-            //创建一个NSFetchRequest，通过它得到对象模型实体：CachedURLResponse
+            let context = appDelegate.persistentContainer.viewContext
+            // // create NSManagedObject instance to match the Xcdatamodeld files in the corresponding data model。
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
             let entity = NSEntityDescription.entity(forEntityName: "CachedURLResponse",
                                                     in: context)
             fetchRequest.entity = entity
             
-            //设置查询条件
+            // Set the query conditions
             let predicate = NSPredicate(format:"url == %@", self.request.url!.absoluteString)
+
             fetchRequest.predicate = predicate
             print(predicate)
-            //执行获取到的请求
+            // Perform the get request
             do {
                 let possibleResult = try context.fetch(fetchRequest)
                     as? Array<NSManagedObject>
