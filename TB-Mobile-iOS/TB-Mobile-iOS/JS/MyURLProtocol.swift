@@ -111,7 +111,7 @@ var requestCount = 0
             self.client?.urlProtocol(self, didFailWithError: error!)
         } else {
             // save data
-            saveCachedResponse()
+            //saveCachedResponse()
             self.client?.urlProtocolDidFinishLoading(self)
         }
     }
@@ -145,44 +145,7 @@ var requestCount = 0
             // Fallback on earlier versions
         }
     }
-    
-    /// save data
-    func saveOriCachedResponse () {
-        print("+++++ 将原始数据缓存起来 +++++")
-        
-        if #available(iOS 10.0, *) {
-            let context = appDelegate.persistentContainer.viewContext
-            // write data
-            var filePath = NSHomeDirectory()
-            // filepath
-            filePath = filePath + "bundle.897b646d204a361b42e8.js"
-            
-            // create NSManagedObject instance to match the Xcdatamodeld files in the corresponding data model。
-            let cachedResponse = NSEntityDescription
-                .insertNewObject(forEntityName: "CachedURLResponse",
-                                 into: context) as NSManagedObject
-            let recData = NSMutableData(contentsOfFile: filePath)
-            cachedResponse.setValue(recData, forKey: "data")
-            cachedResponse.setValue("\(rootURL)/static/bundle.897b646d204a361b42e8.js", forKey: "url")
-            //        cachedResponse.setValue(Date(), forKey: "timestamp")
-            //        cachedResponse.setValue(self.urlResponse?.mimeType, forKey: "mimeType")
-            //        cachedResponse.setValue(self.urlResponse?.textEncodingName, forKey: "encoding")
-            
-            // save (Core Data, the Data should be placed in the main thread, or concurrency is easy to collapse)
-            DispatchQueue.main.async(execute: {
-                do {
-                    try context.save()
-                } catch {
-                    print("不能保存：\(error)")
-                }
-            })
-        } else {
-            // Fallback on earlier versions
-        }
-    }
-    
-    
-    
+
     // Retrieve the cache request
     func cachedResponseForCurrentRequest() -> NSManagedObject? {
         // Obtain the data management context
