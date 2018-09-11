@@ -33,6 +33,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         // setup color
         self.setupViews()
 
+        usersTF.text = "343152747@qq.com"
+        pwdTF.text = "123456"
     }
 
     // setup color

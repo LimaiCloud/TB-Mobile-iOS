@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>base</key>
-	<string></string>
+	<string>http://thingsdevice.limaicloud.com</string>
 	<key>contacts</key>
-	<string></string>
+	<string>http://thingscontacts.limaicloud.com</string>
 	<key>notice</key>
-	<string></string>
+	<string>http://cms.limaicloud.com</string>
 </dict>
 </plist>

@@ -20,10 +20,10 @@ typedef NS_ENUM(NSInteger, SXGradientDirection) {
 /**
  *  use one color to init the gradientView,default is this color to clear.
  *
- *  @param visible   can you see other view what below the gradientView
+ *  param visible   can you see other view what below the gradientView
  *  @param direction  the direction we want gradient to clear
  *
- *  @return
+ *  return
  */
 + (instancetype)createWithColor:(UIColor *)color frame:(CGRect)frame direction:(SXGradientDirection)direction;
 
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, SXGradientDirection) {
  *
  *  @param direction the direction we want gradient to toColor
  *
- *  @return 
+ *  return
  */
 + (instancetype)createWithFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor frame:(CGRect)frame direction:(SXGradientDirection)direction;
 
@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, SXGradientDirection) {
  *
  *  @param colorArray array with UIColor
  *
- *  @return
+ *  return
  */
 + (instancetype)createWithColorArray:(NSArray *)colorArray frame:(CGRect)frame direction:(SXGradientDirection)direction;
 

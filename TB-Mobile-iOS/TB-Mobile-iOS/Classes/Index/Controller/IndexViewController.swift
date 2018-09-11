@@ -61,10 +61,10 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         let manager = WebServices()
         let apiUrl = noticeUrl + broadcastURL
         manager.request(methodType: .GET, urlString: apiUrl, parameters: nil) { (result, error) in
+            // hidden MBProgressHUD
+            self.hudManager.hideHud(self)
+
             if (error == nil) {
-                // hidden MBProgressHUD
-                self.hudManager.hideHud(self)
-                
                 let json = JSON(result as Any)
                 let dataArr = json.array
                 for infoDic in dataArr! {
@@ -154,14 +154,22 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
     // UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.row == 0) {
-            let boardVC = BoardCastController(nibName: "BoardCastController", bundle: nil)
-            boardVC.webUrl = self.link
-            self.navigationController?.pushViewController(boardVC, animated: true)
+            if (self.link != "") {
+                let boardVC = BoardCastController(nibName: "BoardCastController", bundle: nil)
+                boardVC.webUrl = self.link
+                self.navigationController?.pushViewController(boardVC, animated: true)
+            }
         }
     }
     
     // FunctionCellDelegate
     func functionCell(_ funcCell: FunctionCell, didSelectItemAt indexPath: IndexPath) {
+        
+        if (indexPath.item == 0) {
+            // Supervision
+            let superVC = SupervisionController(nibName: "SupervisionController", bundle: nil)
+            self.navigationController?.pushViewController(superVC, animated: true)
+        }
         
     }
 

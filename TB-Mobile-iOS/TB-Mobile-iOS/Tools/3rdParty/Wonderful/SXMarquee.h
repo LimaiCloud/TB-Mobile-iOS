@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, SXMarqueeSpeedLevel) {
  *
  *  @param speed you can set 2,4,6,8.  smaller is faster
  *
- *  @return
+ *  return
  */
 - (instancetype)initWithFrame:(CGRect)frame speed:(SXMarqueeSpeedLevel)speed Msg:(NSString *)msg ;
 
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, SXMarqueeSpeedLevel) {
  *  @param bgColor  backgroundColor
  *  @param txtColor textColor
  *
- *  @return
+ *  return
  */
 - (instancetype)initWithFrame:(CGRect)frame speed:(SXMarqueeSpeedLevel)speed Msg:(NSString *)msg bgColor:(UIColor *)bgColor txtColor:(UIColor *)txtColor;
 
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, SXMarqueeSpeedLevel) {
  *
  *  @param action tapAction block code
  */
-- (void)changeTapMarqueeAction:(void(^)())action;
+- (void)changeTapMarqueeAction:(void(^)(void))action;
 
 /**
  *  you can change marqueeLabel 's font before start

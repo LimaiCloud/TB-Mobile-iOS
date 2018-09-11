@@ -66,6 +66,8 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
         // show MBProgressHUD
         hudManager.showHud(self)
         self.dataSource.removeAllObjects()
+        self.typeArray.removeAll()
+        self.typeArray = ["全部"]
 
         var scope = userDefault.object(forKey: "scopes") as! String
         let customerId = userDefault.object(forKey: "customerId") as! String
@@ -85,8 +87,9 @@ class DeviceMonitorController: BaseViewController, UITableViewDataSource, UITabl
             if (error == nil) {
                 // hidden MBProgressHUD
                 self.hudManager.hideHud(self)
-                
                 let json = JSON(result as Any)
+                print("------%@", json)
+
                 let dataArr = json["data"].array
                 for deviceInfo in dataArr! {
                     let model = DeviceModel(jsonData: deviceInfo)

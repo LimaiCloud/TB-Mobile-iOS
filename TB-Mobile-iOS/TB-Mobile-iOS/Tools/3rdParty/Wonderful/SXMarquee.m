@@ -9,7 +9,7 @@
 #import "SXMarquee.h"
 #import "SXColorGradientView.h"
 
-typedef void(^SXWonderfulAction)();
+typedef void(^SXWonderfulAction)(void);
 
 typedef NS_ENUM(NSInteger, SXMarqueeTapMode) {
     SXMarqueeTapForMove = 1,
@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger, SXMarqueeTapMode) {
     [self addLeftAndRightGradient];
 }
 
-- (void)changeTapMarqueeAction:(void(^)())action{
+- (void)changeTapMarqueeAction:(void(^)(void))action{
     [self addSubview:self.bgBtn];
     self.tapAction = action;
     self.tapMode = SXMarqueeTapForAction;
@@ -197,7 +197,7 @@ typedef NS_ENUM(NSInteger, SXMarqueeTapMode) {
     moveAnim.removedOnCompletion = YES;
     
     moveAnim.duration = self.marqueeLbl.frame.size.width * self.speedLevel * 0.01;
-    [moveAnim setDelegate:self];
+    [moveAnim setDelegate:nil];
     
     [self.marqueeLbl.layer addAnimation:moveAnim forKey:nil];
 }

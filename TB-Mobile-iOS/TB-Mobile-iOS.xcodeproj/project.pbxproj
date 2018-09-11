@@ -86,6 +86,10 @@
 		72E3E52620E2392C0002A457 /* DetailMonitorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E3E52420E2392C0002A457 /* DetailMonitorCell.xib */; };
 		72EB19B72106C4840048F394 /* UIAlertBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EB19B62106C4840048F394 /* UIAlertBlock.swift */; };
 		72FAE9E320E0E04200724796 /* ApplicationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FAE9E220E0E04200724796 /* ApplicationItemCell.swift */; };
+		72FAF9DD214664B300D45A5E /* SupervisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FAF9DB214664B300D45A5E /* SupervisionController.swift */; };
+		72FAF9DE214664B300D45A5E /* SupervisionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FAF9DC214664B300D45A5E /* SupervisionController.xib */; };
+		72FAF9E12146674000D45A5E /* SupervisionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FAF9DF2146674000D45A5E /* SupervisionCell.swift */; };
+		72FAF9E22146674000D45A5E /* SupervisionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FAF9E02146674000D45A5E /* SupervisionCell.xib */; };
 		72FC372620E33C3F00E1573E /* DateConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FC372520E33C3F00E1573E /* DateConvert.swift */; };
 		A82BC637663D2DCD56152B22 /* Pods_TB_Mobile_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835FC57941750B74838C81E9 /* Pods_TB_Mobile_iOS.framework */; };
 /* End PBXBuildFile section */
@@ -182,6 +186,10 @@
 		72E3E52420E2392C0002A457 /* DetailMonitorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailMonitorCell.xib; sourceTree = "<group>"; };
 		72EB19B62106C4840048F394 /* UIAlertBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertBlock.swift; sourceTree = "<group>"; };
 		72FAE9E220E0E04200724796 /* ApplicationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationItemCell.swift; sourceTree = "<group>"; };
+		72FAF9DB214664B300D45A5E /* SupervisionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionController.swift; sourceTree = "<group>"; };
+		72FAF9DC214664B300D45A5E /* SupervisionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupervisionController.xib; sourceTree = "<group>"; };
+		72FAF9DF2146674000D45A5E /* SupervisionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionCell.swift; sourceTree = "<group>"; };
+		72FAF9E02146674000D45A5E /* SupervisionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupervisionCell.xib; sourceTree = "<group>"; };
 		72FC372520E33C3F00E1573E /* DateConvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConvert.swift; sourceTree = "<group>"; };
 		835FC57941750B74838C81E9 /* Pods_TB_Mobile_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TB_Mobile_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E5B36A2B079E1F22C371BEC /* Pods-TB-Mobile-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TB-Mobile-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TB-Mobile-iOS/Pods-TB-Mobile-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -387,6 +395,8 @@
 				724C318E2101BC0F00910F38 /* BoardCastController.xib */,
 				7283919221056DC30070656B /* AnalyzeDataController.swift */,
 				7283919321056DC30070656B /* AnalyzeDataController.xib */,
+				72FAF9DB214664B300D45A5E /* SupervisionController.swift */,
+				72FAF9DC214664B300D45A5E /* SupervisionController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -418,6 +428,8 @@
 				72E3E52420E2392C0002A457 /* DetailMonitorCell.xib */,
 				723CF8A920EB4EC500761F99 /* DetailDashboardCell.swift */,
 				723CF8AA20EB4EC500761F99 /* DetailDashboardCell.xib */,
+				72FAF9DF2146674000D45A5E /* SupervisionCell.swift */,
+				72FAF9E02146674000D45A5E /* SupervisionCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -719,6 +731,7 @@
 				72D6B78C206DCDDC0068AA03 /* Assets.xcassets in Resources */,
 				7283919121056B8E0070656B /* bundle.897b646d204a361b42e8.js in Resources */,
 				72D18C9620D8E2B70003FCF9 /* MessageCell.xib in Resources */,
+				72FAF9E22146674000D45A5E /* SupervisionCell.xib in Resources */,
 				724C31902101BC0F00910F38 /* BoardCastController.xib in Resources */,
 				72B5FC4420EDC7640073E703 /* WarningController.xib in Resources */,
 				726705F52109629400E00F52 /* address.plist in Resources */,
@@ -728,6 +741,7 @@
 				7251189220A52863007C1C05 /* DeviceMonitorController.xib in Resources */,
 				72D18C9220D8E22E0003FCF9 /* MessageViewController.xib in Resources */,
 				72D6B78A206DCDDC0068AA03 /* Main.storyboard in Resources */,
+				72FAF9DE214664B300D45A5E /* SupervisionController.xib in Resources */,
 				723CF8B820EB7A4600761F99 /* ButtonCell.xib in Resources */,
 				7283919521056DC30070656B /* AnalyzeDataController.xib in Resources */,
 			);
@@ -847,7 +861,9 @@
 				7281938A2074610600A4D5F3 /* BaseViewController.swift in Sources */,
 				72E3E51B20E1DB6F0002A457 /* DetailMonitorController.swift in Sources */,
 				7282CA4C2089E75D00355CF5 /* FunctionCell.swift in Sources */,
+				72FAF9E12146674000D45A5E /* SupervisionCell.swift in Sources */,
 				722819C3208F2A1D00BED650 /* SwiftyJSON.swift in Sources */,
+				72FAF9DD214664B300D45A5E /* SupervisionController.swift in Sources */,
 				7283919421056DC30070656B /* AnalyzeDataController.swift in Sources */,
 				724C318721018A9100910F38 /* UIColor+Wonderful.m in Sources */,
 				728391A32105B9320070656B /* UrlManager.swift in Sources */,
@@ -1030,7 +1046,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/TB-Mobile-iOS/Supporting Files/TB-Movile-iOS-Briding-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1051,7 +1067,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/TB-Mobile-iOS/Supporting Files/TB-Movile-iOS-Briding-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

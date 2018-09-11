@@ -84,15 +84,16 @@ class DetailMonitorController: BaseViewController, WebSocketDelegate, UITableVie
                 print("key: %@ ---- value: %@", key, value)
                 dataSource.add(key)
             }
-            for i in 0..<dataSource.count {
-                let value = dataDic.object(forKey: dataSource[i])
-                let dataArr = NSMutableArray()
-                for dataValue in value as! NSArray {
-                    dataArr.add(dataValue)
+            if (dataSource.count > 0) {
+                for i in 0..<dataSource.count {
+                    let value = dataDic.object(forKey: dataSource[i])
+                    let dataArr = NSMutableArray()
+                    for dataValue in value as! NSArray {
+                        dataArr.add(dataValue)
+                    }
+                    infoDic.setValue(dataArr, forKey: dataSource[i] as! String)
                 }
-                infoDic.setValue(dataArr, forKey: dataSource[i] as! String)
-            }
-            
+            } 
         }
         self.tableView.reloadData()
     }
