@@ -55,6 +55,11 @@
 		7283919421056DC30070656B /* AnalyzeDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283919221056DC30070656B /* AnalyzeDataController.swift */; };
 		7283919521056DC30070656B /* AnalyzeDataController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7283919321056DC30070656B /* AnalyzeDataController.xib */; };
 		728391A32105B9320070656B /* UrlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728391A22105B9320070656B /* UrlManager.swift */; };
+		729D0E4E2150A019007A38F5 /* DialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729D0E4C2150A019007A38F5 /* DialogController.swift */; };
+		729D0E4F2150A019007A38F5 /* DialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 729D0E4D2150A019007A38F5 /* DialogController.xib */; };
+		729D0E522150A585007A38F5 /* DialogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729D0E502150A585007A38F5 /* DialogCell.swift */; };
+		729D0E532150A585007A38F5 /* DialogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 729D0E512150A585007A38F5 /* DialogCell.xib */; };
+		729D0E562150A842007A38F5 /* BtnIndexpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729D0E552150A842007A38F5 /* BtnIndexpath.swift */; };
 		72A38FB520E47C7400E9A588 /* DetailDashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A38FB320E47C7400E9A588 /* DetailDashBoardController.swift */; };
 		72A38FB620E47C7400E9A588 /* DetailDashBoardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A38FB420E47C7400E9A588 /* DetailDashBoardController.xib */; };
 		72A8F613209AC80500DA0C14 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 72A8F612209AC80500DA0C14 /* login.png */; };
@@ -91,6 +96,10 @@
 		72FAF9E12146674000D45A5E /* SupervisionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FAF9DF2146674000D45A5E /* SupervisionCell.swift */; };
 		72FAF9E22146674000D45A5E /* SupervisionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FAF9E02146674000D45A5E /* SupervisionCell.xib */; };
 		72FC372620E33C3F00E1573E /* DateConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FC372520E33C3F00E1573E /* DateConvert.swift */; };
+		72FC56DB214F82EA00F4F9BC /* BoardListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FC56D9214F82EA00F4F9BC /* BoardListController.swift */; };
+		72FC56DC214F82EA00F4F9BC /* BoardListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FC56DA214F82EA00F4F9BC /* BoardListController.xib */; };
+		72FC56DE214F931300F4F9BC /* BoardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FC56DD214F931300F4F9BC /* BoardsModel.swift */; };
+		72FC56E0214FB1F700F4F9BC /* BoardsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FC56DF214FB1F700F4F9BC /* BoardsListModel.swift */; };
 		A82BC637663D2DCD56152B22 /* Pods_TB_Mobile_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 835FC57941750B74838C81E9 /* Pods_TB_Mobile_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -153,6 +162,11 @@
 		7283919221056DC30070656B /* AnalyzeDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeDataController.swift; sourceTree = "<group>"; };
 		7283919321056DC30070656B /* AnalyzeDataController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnalyzeDataController.xib; sourceTree = "<group>"; };
 		728391A22105B9320070656B /* UrlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlManager.swift; sourceTree = "<group>"; };
+		729D0E4C2150A019007A38F5 /* DialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogController.swift; sourceTree = "<group>"; };
+		729D0E4D2150A019007A38F5 /* DialogController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogController.xib; sourceTree = "<group>"; };
+		729D0E502150A585007A38F5 /* DialogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogCell.swift; sourceTree = "<group>"; };
+		729D0E512150A585007A38F5 /* DialogCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogCell.xib; sourceTree = "<group>"; };
+		729D0E552150A842007A38F5 /* BtnIndexpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtnIndexpath.swift; sourceTree = "<group>"; };
 		72A38FB320E47C7400E9A588 /* DetailDashBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDashBoardController.swift; sourceTree = "<group>"; };
 		72A38FB420E47C7400E9A588 /* DetailDashBoardController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailDashBoardController.xib; sourceTree = "<group>"; };
 		72A8F612209AC80500DA0C14 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
@@ -191,6 +205,10 @@
 		72FAF9DF2146674000D45A5E /* SupervisionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupervisionCell.swift; sourceTree = "<group>"; };
 		72FAF9E02146674000D45A5E /* SupervisionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupervisionCell.xib; sourceTree = "<group>"; };
 		72FC372520E33C3F00E1573E /* DateConvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConvert.swift; sourceTree = "<group>"; };
+		72FC56D9214F82EA00F4F9BC /* BoardListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListController.swift; sourceTree = "<group>"; };
+		72FC56DA214F82EA00F4F9BC /* BoardListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardListController.xib; sourceTree = "<group>"; };
+		72FC56DD214F931300F4F9BC /* BoardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsModel.swift; sourceTree = "<group>"; };
+		72FC56DF214FB1F700F4F9BC /* BoardsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsListModel.swift; sourceTree = "<group>"; };
 		835FC57941750B74838C81E9 /* Pods_TB_Mobile_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TB_Mobile_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E5B36A2B079E1F22C371BEC /* Pods-TB-Mobile-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TB-Mobile-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TB-Mobile-iOS/Pods-TB-Mobile-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		CBDEA47AA3B9FB02C2FE4A69 /* Pods-TB-Mobile-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TB-Mobile-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TB-Mobile-iOS/Pods-TB-Mobile-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -322,6 +340,7 @@
 		728193912074613E00A4D5F3 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				729D0E542150A827007A38F5 /* CustomButton */,
 				72EB19B52106C4840048F394 /* UIAlertController */,
 				724C317621018A9000910F38 /* 3rdParty */,
 				72FC372420E33C1400E1573E /* DateFormatter */,
@@ -395,6 +414,8 @@
 				724C318E2101BC0F00910F38 /* BoardCastController.xib */,
 				7283919221056DC30070656B /* AnalyzeDataController.swift */,
 				7283919321056DC30070656B /* AnalyzeDataController.xib */,
+				72FC56D9214F82EA00F4F9BC /* BoardListController.swift */,
+				72FC56DA214F82EA00F4F9BC /* BoardListController.xib */,
 				72FAF9DB214664B300D45A5E /* SupervisionController.swift */,
 				72FAF9DC214664B300D45A5E /* SupervisionController.xib */,
 			);
@@ -407,6 +428,8 @@
 				7251189B20A57336007C1C05 /* DeviceModel.swift */,
 				7251189D20A5736A007C1C05 /* TenantModel.swift */,
 				72D18C9720D8F5450003FCF9 /* DashboardModel.swift */,
+				72FC56DD214F931300F4F9BC /* BoardsModel.swift */,
+				72FC56DF214FB1F700F4F9BC /* BoardsListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -430,6 +453,8 @@
 				723CF8AA20EB4EC500761F99 /* DetailDashboardCell.xib */,
 				72FAF9DF2146674000D45A5E /* SupervisionCell.swift */,
 				72FAF9E02146674000D45A5E /* SupervisionCell.xib */,
+				729D0E502150A585007A38F5 /* DialogCell.swift */,
+				729D0E512150A585007A38F5 /* DialogCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -451,6 +476,14 @@
 				728391A22105B9320070656B /* UrlManager.swift */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		729D0E542150A827007A38F5 /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				729D0E552150A842007A38F5 /* BtnIndexpath.swift */,
+			);
+			path = CustomButton;
 			sourceTree = "<group>";
 		};
 		72A8F60E209AB68300DA0C14 /* Resources */ = {
@@ -628,6 +661,8 @@
 			isa = PBXGroup;
 			children = (
 				72EB19B62106C4840048F394 /* UIAlertBlock.swift */,
+				729D0E4C2150A019007A38F5 /* DialogController.swift */,
+				729D0E4D2150A019007A38F5 /* DialogController.xib */,
 			);
 			path = UIAlertController;
 			sourceTree = "<group>";
@@ -721,7 +756,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				72A38FB620E47C7400E9A588 /* DetailDashBoardController.xib in Resources */,
+				729D0E4F2150A019007A38F5 /* DialogController.xib in Resources */,
 				72D18C9C20D8F83E0003FCF9 /* DashboardCell.xib in Resources */,
+				72FC56DC214F82EA00F4F9BC /* BoardListController.xib in Resources */,
 				72D6B78F206DCDDC0068AA03 /* LaunchScreen.storyboard in Resources */,
 				723CF8AC20EB4EC500761F99 /* DetailDashboardCell.xib in Resources */,
 				72E3E51C20E1DB6F0002A457 /* DetailMonitorController.xib in Resources */,
@@ -741,6 +778,7 @@
 				7251189220A52863007C1C05 /* DeviceMonitorController.xib in Resources */,
 				72D18C9220D8E22E0003FCF9 /* MessageViewController.xib in Resources */,
 				72D6B78A206DCDDC0068AA03 /* Main.storyboard in Resources */,
+				729D0E532150A585007A38F5 /* DialogCell.xib in Resources */,
 				72FAF9DE214664B300D45A5E /* SupervisionController.xib in Resources */,
 				723CF8B820EB7A4600761F99 /* ButtonCell.xib in Resources */,
 				7283919521056DC30070656B /* AnalyzeDataController.xib in Resources */,
@@ -838,7 +876,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72FC56DE214F931300F4F9BC /* BoardsModel.swift in Sources */,
 				7281938F2074613200A4D5F3 /* AppService.swift in Sources */,
+				72FC56DB214F82EA00F4F9BC /* BoardListController.swift in Sources */,
 				7282CA4A2089E74A00355CF5 /* CustomCell.swift in Sources */,
 				728193892074610600A4D5F3 /* TabBarController.swift in Sources */,
 				724C318821018A9100910F38 /* SXColorLabel.m in Sources */,
@@ -852,6 +892,7 @@
 				728193982074613E00A4D5F3 /* StringUtil.swift in Sources */,
 				723CF8AB20EB4EC500761F99 /* DetailDashboardCell.swift in Sources */,
 				724C318F2101BC0F00910F38 /* BoardCastController.swift in Sources */,
+				729D0E562150A842007A38F5 /* BtnIndexpath.swift in Sources */,
 				72B5FC4820EDF8B20073E703 /* ContactModel.swift in Sources */,
 				727D25CA20F843F1000593C5 /* UpdateToken.swift in Sources */,
 				72B5FC4320EDC7640073E703 /* WarningController.swift in Sources */,
@@ -867,11 +908,13 @@
 				7283919421056DC30070656B /* AnalyzeDataController.swift in Sources */,
 				724C318721018A9100910F38 /* UIColor+Wonderful.m in Sources */,
 				728391A32105B9320070656B /* UrlManager.swift in Sources */,
+				72FC56E0214FB1F700F4F9BC /* BoardsListModel.swift in Sources */,
 				723CF8B720EB7A4600761F99 /* ButtonCell.swift in Sources */,
 				724C318B21018A9100910F38 /* UILabel+Wonderful.m in Sources */,
 				724DC2C020A4307C00604CD7 /* WebService.swift in Sources */,
 				72B3243D20D35E6900B83EF0 /* DashBoardsController.swift in Sources */,
 				72D6B785206DCDDC0068AA03 /* AppDelegate.swift in Sources */,
+				729D0E4E2150A019007A38F5 /* DialogController.swift in Sources */,
 				7251189A20A53A22007C1C05 /* SYMoreButtonView.m in Sources */,
 				72D18C9B20D8F83E0003FCF9 /* DashboardCell.swift in Sources */,
 				724C318A21018A9100910F38 /* UIColor+Separate.m in Sources */,
@@ -882,6 +925,7 @@
 				7283918F21056B8E0070656B /* MyURLProtocol.swift in Sources */,
 				72FC372620E33C3F00E1573E /* DateConvert.swift in Sources */,
 				723CF8AF20EB72D200761F99 /* SettingController.swift in Sources */,
+				729D0E522150A585007A38F5 /* DialogCell.swift in Sources */,
 				7251189120A52863007C1C05 /* DeviceMonitorController.swift in Sources */,
 				7251189520A5294E007C1C05 /* DeviceMonitorCell.swift in Sources */,
 				7281939A2074613E00A4D5F3 /* HUDManager.swift in Sources */,

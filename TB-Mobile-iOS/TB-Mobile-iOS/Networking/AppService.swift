@@ -13,6 +13,7 @@ import AFNetworking
 enum HTTPMethod {
     case GET
     case POST
+    case PUT
 }
 
 /**
@@ -76,8 +77,10 @@ class AppService: AFHTTPSessionManager {
         if methodType == HTTPMethod.GET {
             
             get(urlString, parameters: parameters, progress: nil, success: successBlock, failure: failureBlock)
-        } else {
+        } else if methodType == HTTPMethod.POST {
             post(urlString, parameters: parameters, progress: nil, success: successBlock, failure: failureBlock)
+        }else {
+            put(urlString, parameters: parameters, success: successBlock, failure: failureBlock)
         }
     }
 }

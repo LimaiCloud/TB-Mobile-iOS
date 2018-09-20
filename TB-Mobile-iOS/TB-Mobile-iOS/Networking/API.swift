@@ -64,6 +64,10 @@ let websocktURL = "/api/ws/plugins/telemetry?token="
 let bearereToken = "Bearer "
 // token
 var token = ""
+// boardsToken
+var boardsToken = ""
+// httpHeader
+var httpHeader = ""
 
 // tenant
 var tenantURL = "/api/tenant/"
@@ -89,3 +93,24 @@ let broadcastURL = "/qiyue/wp-json/wp/v2/posts"
 
 // loading js
 let webUrl = "\(rootURL)/static/bundle.897b646d204a361b42e8.js"
+
+// -------------------- supervision platform -----------------------------------------
+// userId
+var userId = ""
+// boards
+let boardsUrl = UrlManager.manager()["boards"]!
+// users login
+let usersLogin = "\(boardsUrl)/users/login"
+// /api/users/
+let apiUsers = "\(boardsUrl)/api/users/"
+
+// /api/boards/
+let apiBoards = "\(boardsUrl)/api/boards/"
+let boardsList = "/boards"
+let list = "/lists/"
+let carsList = "/cards/"
+
+
+
+
+

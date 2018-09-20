@@ -73,6 +73,9 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
             
         }
         
+        httpHeader = "X-Authorization"
+        token = userDefault.object(forKey: "token") as! String
+        
         let manager = WebServices()
         
         manager.request(methodType: .GET, urlString: apiURL, parameters: nil) { (result, error) in

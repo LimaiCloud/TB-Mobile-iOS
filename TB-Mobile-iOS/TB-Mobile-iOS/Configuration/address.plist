@@ -8,5 +8,7 @@
 	<string>http://thingscontacts.limaicloud.com</string>
 	<key>notice</key>
 	<string>http://cms.limaicloud.com</string>
+	<key>boards</key>
+	<string>http://qydb.fingeroffice.cn</string>
 </dict>
 </plist>

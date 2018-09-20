@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SupervisionController" customModule="TB_Mobile_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="Mk0-2U-uCD" id="Ab6-SD-rW0"/>
+                <outlet property="topView" destination="SMa-Xb-Bae" id="nOC-HT-D3u"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,6 +25,11 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mk0-2U-uCD">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="SMa-Xb-Bae">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="axY-X1-C87"/>
                         <outlet property="delegate" destination="-1" id="K0D-xi-1od"/>
@@ -38,6 +44,7 @@
                 <constraint firstItem="Mk0-2U-uCD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wBR-EE-tE6"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="39.5" y="53.5"/>
         </view>
     </objects>
 </document>

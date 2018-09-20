@@ -14,14 +14,23 @@ class SupervisionCell: UITableViewCell {
     @IBOutlet weak var titleLab: UILabel!
     @IBOutlet weak var timeLab: UILabel!
     @IBOutlet weak var nameLab: UILabel!
-    @IBOutlet weak var statusTF: UITextField!
+    @IBOutlet weak var changeStatusBtn: BtnIndexpath!
+    
+    @IBOutlet weak var customView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
         spliteView.backgroundColor = UIColor.hexStringToColor(hexString: "f7f7f7")
-        statusTF.isEnabled = false
+    }
+    
+    func setUpValues(_ model: BoardsListModel) {
+        
+        self.titleLab.text = model.title!
+
+//        let endIndex = model.createdAt!.index(model.createdAt!.startIndex, offsetBy: 10)
+//        self.timeLab.text = String(model.createdAt![model.createdAt!.startIndex..<endIndex])
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -49,7 +49,9 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         cycleScrollView.autoScrollTimeInterval = 2
 
-        self.requestData()
+//        self.requestData()
+        self.usersLoginRequest()
+        
     }
     
     // Network Requests
@@ -58,7 +60,11 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         // show MBProgressHUD
         hudManager.showHud(self)
         
+        httpHeader = "X-Authorization"
+        token = userDefault.object(forKey: "token") as! String
+
         let manager = WebServices()
+       
         let apiUrl = noticeUrl + broadcastURL
         manager.request(methodType: .GET, urlString: apiUrl, parameters: nil) { (result, error) in
             // hidden MBProgressHUD
@@ -78,6 +84,31 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
             }else {
                 print("%@", error!)
                 self.hudManager.showTips("请求失败", view: self.view)
+            }
+        }
+    }
+    
+    /////////////////// supersivion platform  users login ////////////////
+    func usersLoginRequest() {
+        let dic = ["username": "liuxudong", "password": "asdf@123"] as [String : AnyObject]
+        print("------%@", usersLogin)
+        AppService.shareInstance.request(methodType: .POST, urlString: usersLogin, parameters: dic) { (result, error) in
+            if (error == nil) {
+                // hidden MBProgressHUD
+                self.hudManager.hideHud(self)
+
+                let json = JSON(result as Any)
+                boardsToken = json["token"].string!
+                userId = json["id"].string!
+                // save rootURL
+                userDefault.setValue(boardsToken, forKey: "boardsToken")
+                userDefault.setValue(userId, forKey: "userId")
+                userDefault.synchronize()
+                print("======%@", boardsToken)
+            }else {
+                // false
+                self.hudManager.showTips("请求失败", view: self.view)
+                print("%@", error!)
             }
         }
     }
@@ -167,8 +198,10 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         
         if (indexPath.item == 0) {
             // Supervision
-            let superVC = SupervisionController(nibName: "SupervisionController", bundle: nil)
-            self.navigationController?.pushViewController(superVC, animated: true)
+            let boardsVC = BoardListController(nibName: "BoardListController", bundle: nil)
+            
+//            let superVC = SupervisionController(nibName: "SupervisionController", bundle: nil)
+            self.navigationController?.pushViewController(boardsVC, animated: true)
         }
         
     }

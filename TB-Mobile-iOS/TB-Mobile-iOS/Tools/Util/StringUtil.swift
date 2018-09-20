@@ -29,7 +29,7 @@ class StringUtil: NSObject {
     class func getLabelHight(_ string: String, fontSize: CGFloat, width: CGFloat) -> CGFloat {
         let contentLabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: 0))
         contentLabel.numberOfLines = 0
-//        contentLabel.font = UIFont.systemFont(ofSize: fontSize)
+        contentLabel.font = UIFont.systemFont(ofSize: fontSize)
         contentLabel.lineBreakMode = NSLineBreakMode.byTruncatingTail
         
         let paraph = NSMutableParagraphStyle()
@@ -37,7 +37,7 @@ class StringUtil: NSObject {
         let attributes = [NSAttributedStringKey.font:UIFont.systemFont(ofSize: fontSize), NSAttributedStringKey.paragraphStyle: paraph]
         contentLabel.attributedText = NSAttributedString(string: string, attributes: attributes)
         
-//        contentLabel.text = string
+        contentLabel.text = string
         contentLabel.sizeToFit()
         
         return contentLabel.frame.height
