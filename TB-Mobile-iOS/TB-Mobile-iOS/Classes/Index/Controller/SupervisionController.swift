@@ -222,7 +222,6 @@ class SupervisionController: BaseViewController, UITableViewDelegate, UITableVie
     
     // SYMoreButtonDelegate
     func sy_buttonClick(_ index: Int) {
-        print("-----%d", index)
         self.index = index
         // request listData
         self.boardsListData()

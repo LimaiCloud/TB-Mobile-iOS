@@ -49,7 +49,6 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         cycleScrollView.autoScrollTimeInterval = 2
 
-//        self.requestData()
         self.usersLoginRequest()
         
     }
@@ -197,10 +196,8 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
     func functionCell(_ funcCell: FunctionCell, didSelectItemAt indexPath: IndexPath) {
         
         if (indexPath.item == 0) {
-            // Supervision
+            // BoardListController
             let boardsVC = BoardListController(nibName: "BoardListController", bundle: nil)
-            
-//            let superVC = SupervisionController(nibName: "SupervisionController", bundle: nil)
             self.navigationController?.pushViewController(boardsVC, animated: true)
         }
         

@@ -33,8 +33,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
         // setup color
         self.setupViews()
 
-        usersTF.text = "343152747@qq.com"
-        pwdTF.text = "123456"
+        
     }
 
     // setup color
@@ -134,8 +133,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIGestureRecog
                     // the token that will be decoded
                     do {
                         let jwt = try decode(jwt: token)
-//                        print("payload---------%@", jwt)
-//                        print("=======%@", jwt.claim(name: "tenantId").string!)
                         let tenantId = jwt.claim(name: "tenantId").string!
                         let customerId = jwt.claim(name: "customerId").string!
                         userDefault.setValue(customerId, forKey: "customerId")

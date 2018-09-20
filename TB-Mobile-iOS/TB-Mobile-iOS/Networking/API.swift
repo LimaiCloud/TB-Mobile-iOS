@@ -18,8 +18,6 @@ let kScreen_W = UIScreen.main.bounds.size.width
 // Screen height
 let kScreen_H = UIScreen.main.bounds.size.height
 
-let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
 let userDefault = UserDefaults.standard
 
 

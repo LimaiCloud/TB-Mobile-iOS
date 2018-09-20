@@ -3,6 +3,7 @@ import CoreData
 
 // requestCount
 var requestCount = 0
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
  class MyURLProtocol: URLProtocol , URLSessionDataDelegate, URLSessionTaskDelegate{
     
@@ -122,6 +123,7 @@ var requestCount = 0
         
         // appdelegate
         if #available(iOS 10.0, *) {
+            
             let context = appDelegate.persistentContainer.viewContext
             // create NSManagedObject instance to match the Xcdatamodeld files in the corresponding data model。
             let cachedResponse = NSEntityDescription

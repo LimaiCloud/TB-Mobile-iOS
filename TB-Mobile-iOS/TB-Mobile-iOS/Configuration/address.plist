@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>base</key>
-	<string>http://thingsdevice.limaicloud.com</string>
+	<string></string>
 	<key>contacts</key>
-	<string>http://thingscontacts.limaicloud.com</string>
+	<string></string>
 	<key>notice</key>
-	<string>http://cms.limaicloud.com</string>
+	<string></string>
 	<key>boards</key>
-	<string>http://qydb.fingeroffice.cn</string>
+	<string></string>
 </dict>
 </plist>

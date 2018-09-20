@@ -32,8 +32,6 @@ public class UpdateToken: NSObject {
                 // the token that will be decoded
                 do {
                     let jwt = try decode(jwt: token)
-//                    print("payload---------%@", jwt)
-//                    print("=======%@", jwt.claim(name: "tenantId").string!)
                     let tenantId = jwt.claim(name: "tenantId").string!
                     let customerId = jwt.claim(name: "customerId").string!
                     userDefault.setValue(customerId, forKey: "customerId")
@@ -44,7 +42,6 @@ public class UpdateToken: NSObject {
                     userDefault.setValue(sub, forKey: "sub")
                     let exp = jwt.claim(name: "exp").double
                     userDefault.setValue(exp, forKey: "exp")
-//                    print("scopes: %@", scopes[0])
                 }catch {
                     print("Failed to decode JWT: \(error)")
                     

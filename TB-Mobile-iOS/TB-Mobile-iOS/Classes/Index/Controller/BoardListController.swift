@@ -61,7 +61,6 @@ class BoardListController: BaseViewController, UITableViewDelegate, UITableViewD
         
         let uid = userDefault.object(forKey: "userId") as! String
         let apiUrl = apiUsers + uid + boardsList
-//        let dic = ["action": "takeOwnership"] as [String : AnyObject]
         
         manager.request(methodType: .GET, urlString: apiUrl, parameters: nil) { (result, error) in
             // hidden MBProgressHUD
