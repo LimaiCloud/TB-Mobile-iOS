@@ -1,24 +1,24 @@
 //
-//  BoardListController.swift
+//  DetailSupervisionController.swift
 //  TB-Mobile-iOS
 //
-//  Created by dongmingming on 2018/9/17.
+//  Created by dongmingming on 2018/10/8.
 //  Copyright © 2018年 DongMingMing. All rights reserved.
 //
 
 import UIKit
 
-class BoardListController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class DetailSupervisionController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    
     var dataSource = NSMutableArray()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
-        
-    }
+    // title
+    var titleName = ""
+    
+    var boardsId = ""
+    var statusId = ""
+    var cardsId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,41 +26,40 @@ class BoardListController: BaseViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
         
         self.customView()
-        
     }
-    
+
     // set up
     func customView() {
         
         // title
-        self.setNavTitle("任务督办")
+        self.setNavTitle(titleName)
         
         // register cell
         self.registerCell()
+        
         self.requestData()
     }
     
     // register cell
     func registerCell() {
         // register NIB
-        let nib = UINib(nibName: "DashboardCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "DashboardCell")
+        let nib = UINib(nibName: "DetailSupCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "DetailSupCell")
         
     }
     
-    // Network Requests
     func requestData() {
-        
-        // show MBProgressHUD
-        hudManager.showHud(self)
+        // remove all objects
+        self.dataSource.removeAllObjects()
         
         httpHeader = "Authorization"
         token = userDefault.object(forKey: "boardsToken") as! String
         
         let manager = WebServices()
+        // show MBProgressHUD
+        hudManager.showHud(self)
         
-        let uid = userDefault.object(forKey: "userId") as! String
-        let apiUrl = apiUsers + uid + boardsList
+        let apiUrl = apiBoards + boardsId + list + statusId + carsList + cardsId
         
         manager.request(methodType: .GET, urlString: apiUrl, parameters: nil) { (result, error) in
             // hidden MBProgressHUD
@@ -68,14 +67,12 @@ class BoardListController: BaseViewController, UITableViewDelegate, UITableViewD
             
             if (error == nil) {
                 let json = JSON(result as Any)
-                let dataArr = json.array
-                for infoDic in dataArr! {
-                    let model = BoardsModel(jsonData: infoDic)
-                    // add dataSource
-                    self.dataSource.add(model)
-                }
+                print("json--------%@", json)
+                let model = SupervisionModel(jsonData: json)
+                self.dataSource.add(model)
+                
+                // reloadData
                 self.tableView.reloadData()
-
             }else{
                 print("%@", error!)
                 self.hudManager.showTips("请求失败", view: self.view)
@@ -89,27 +86,23 @@ class BoardListController: BaseViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardCell", for: indexPath) as! DashboardCell
-        let model = dataSource[indexPath.row] as! BoardsModel
-        cell.titleLab.text = model.title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailSupCell", for: indexPath) as! DetailSupCell
+        let model = self.dataSource[indexPath.row] as! SupervisionModel
+        cell.setUpValues(model)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Supervision
-        let superVC = SupervisionController(nibName: "SupervisionController", bundle: nil)
-        let model = dataSource[indexPath.row] as! BoardsModel
-        superVC.boardsId = model._id!
-        superVC.titleName = model.title!
-        self.navigationController?.pushViewController(superVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 120
+        return kScreen_H - 64
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

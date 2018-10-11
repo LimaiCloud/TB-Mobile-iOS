@@ -12,8 +12,9 @@ class SupervisionCell: UITableViewCell {
 
     @IBOutlet weak var spliteView: UIView!
     @IBOutlet weak var titleLab: UILabel!
-    @IBOutlet weak var timeLab: UILabel!
-    @IBOutlet weak var nameLab: UILabel!
+
+    @IBOutlet weak var descLab: UILabel!
+    
     @IBOutlet weak var changeStatusBtn: BtnIndexpath!
     
     @IBOutlet weak var customView: UIView!
@@ -28,7 +29,7 @@ class SupervisionCell: UITableViewCell {
     func setUpValues(_ model: BoardsListModel) {
         
         self.titleLab.text = model.title!
-
+        self.descLab.text = model.description!
 //        let endIndex = model.createdAt!.index(model.createdAt!.startIndex, offsetBy: 10)
 //        self.timeLab.text = String(model.createdAt![model.createdAt!.startIndex..<endIndex])
     }

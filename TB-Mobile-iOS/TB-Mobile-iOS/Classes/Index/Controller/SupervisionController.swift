@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SupervisionController: BaseViewController, UITableViewDelegate, UITableViewDataSource, SYMoreButtonDelegate, DialogDelegate {
+class SupervisionController: BaseViewController, UITableViewDelegate, UITableViewDataSource, SYMoreButtonDelegate, DialogDelegate, CreateSupDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -16,6 +16,9 @@ class SupervisionController: BaseViewController, UITableViewDelegate, UITableVie
     // SYMoreButtonView
     var buttonView = SYMoreButtonView()
     @IBOutlet weak var topView: UIView!
+    
+    // title
+    var titleName = ""
     
     // status Array
     var dataSource = NSMutableArray()
@@ -43,7 +46,7 @@ class SupervisionController: BaseViewController, UITableViewDelegate, UITableVie
     func customView() {
         
         // title
-        self.setNavTitle("任务督办")
+        self.setNavTitle(titleName)
         self.typeArray = []
         
         // create right button
@@ -66,7 +69,13 @@ class SupervisionController: BaseViewController, UITableViewDelegate, UITableVie
     
     // create right button
     @objc func createSupervision() {
-        
+        // create supversion
+        let createVC = CreateSupController(nibName: "CreateSupController", bundle: nil)
+        createVC.moduleArray = self.typeArray
+        createVC.boardsId = self.boardsId
+        createVC.idArray = self.dataSource
+        createVC.delegate = self
+        self.navigationController?.pushViewController(createVC, animated: true)
     }
     
     // change status button
@@ -206,7 +215,13 @@ class SupervisionController: BaseViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+       let detailVC = DetailSupervisionController(nibName: "DetailSupervisionController", bundle: nil)
+        detailVC.boardsId = self.boardsId
+        detailVC.statusId =  self.dataSource.object(at: index) as! String
+        let model = self.infoArr[indexPath.row] as! BoardsListModel
+        detailVC.cardsId = model._id!
+        detailVC.titleName = model.title!
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -228,10 +243,17 @@ class SupervisionController: BaseViewController, UITableViewDelegate, UITableVie
     }
     
     // DialogDelegate
-    func updateStatus() {
+    func updateStatus(_ selectTitle: String, statusId: String) {
         // update data
         self.boardsListData()
     }
+    
+    // CreateSupDelegate
+    func updateViews() {
+        // update data
+        self.boardsListData()
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

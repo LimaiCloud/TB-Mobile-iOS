@@ -10,7 +10,7 @@ import UIKit
 
 protocol DialogDelegate {
     
-    func updateStatus()
+    func updateStatus(_ selectTitle: String, statusId: String)
 }
 
 class DialogController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -34,6 +34,9 @@ class DialogController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var cardsId = ""
     // current status
     var currentId = ""
+    // from create supversion
+    var isCreate = ""
+    
     // BoardsListModel
     var boardModel:BoardsListModel!
     
@@ -83,8 +86,18 @@ class DialogController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if (self.beforeBtn == nil) {
             self.manager.showTips("请选择状态", view: self.view)
         }else {
-            // change status
-            self.requestData()
+            if (isCreate == "createSup") {
+                // create supversion
+                if (self.delegate != nil) {
+                    let title = self.moduleArray[indexPath.row]
+                    let statusId = self.idArray[indexPath.row] as! String
+                    self.delegate?.updateStatus(title, statusId: statusId)
+                }
+                self.dismiss(animated: true, completion: nil)
+            }else {
+                // change status
+                self.requestData()
+            }
         }
     }
     
@@ -112,7 +125,7 @@ class DialogController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let json = JSON(result as Any)
                 print("json---------%@", json)
                 if (self.delegate != nil) {
-                    self.delegate?.updateStatus()
+                    self.delegate?.updateStatus("",statusId: "")
                 }
                 self.dismiss(animated: true, completion: nil)
 
@@ -162,9 +175,6 @@ class DialogController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
