@@ -445,11 +445,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KEz-Pq-paH">
-                                                    <rect key="frame" x="20" y="70" width="335" height="180"/>
+                                                    <rect key="frame" x="20" y="70" width="335" height="235"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="180" id="3Dx-PE-Npk"/>
-                                                    </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="15" id="cN6-Ks-Qi2">
                                                         <size key="itemSize" width="149" height="83"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -509,6 +506,7 @@
                                                 <constraint firstItem="KEz-Pq-paH" firstAttribute="leading" secondItem="fyj-ib-Fgz" secondAttribute="leading" constant="20" id="OKU-n7-nba"/>
                                                 <constraint firstAttribute="trailing" secondItem="SgF-89-Vwk" secondAttribute="trailing" constant="20" id="VJc-BL-IcN"/>
                                                 <constraint firstItem="SgF-89-Vwk" firstAttribute="leading" secondItem="fyj-ib-Fgz" secondAttribute="leading" constant="20" id="daP-el-fRI"/>
+                                                <constraint firstAttribute="bottom" secondItem="KEz-Pq-paH" secondAttribute="bottom" id="fxP-cd-6Am"/>
                                                 <constraint firstItem="SgF-89-Vwk" firstAttribute="top" secondItem="fyj-ib-Fgz" secondAttribute="top" constant="20" id="g7V-Fl-oya"/>
                                                 <constraint firstAttribute="trailing" secondItem="KEz-Pq-paH" secondAttribute="trailing" constant="20" id="t0L-qC-yHa"/>
                                                 <constraint firstItem="KEz-Pq-paH" firstAttribute="top" secondItem="SgF-89-Vwk" secondAttribute="bottom" constant="20" id="zd9-uB-GgQ"/>
@@ -1127,7 +1125,7 @@
         <image name="消息" width="42" height="42"/>
         <image name="用户名" width="24" height="24"/>
         <image name="登录背景" width="295" height="62"/>
-        <image name="编辑" width="22" height="22"/>
+        <image name="编辑" width="19" height="18"/>
         <image name="警报" width="42" height="42"/>
         <image name="设备" width="42" height="42"/>
         <image name="通讯录-默认状态" width="23" height="24"/>

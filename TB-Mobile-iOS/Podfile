@@ -5,10 +5,13 @@ pod 'MBProgressHUD'
 pod 'MJRefresh'
 pod 'SDCycleScrollView'
 pod 'Bugly'
+pod 'EZUIKit'
 
 use_frameworks!
 pod 'JWTDecode'
 pod 'Starscream'
-pod 'Charts','3.1.1'
+pod 'Charts'
+
+
 
 end

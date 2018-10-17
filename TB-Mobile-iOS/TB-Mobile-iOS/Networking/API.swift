@@ -109,6 +109,15 @@ let list = "/lists/"
 let carsList = "/cards/"
 
 
-
-
+// ----------------------- fluorite platform ------------------------------------------
+// appKey
+let fluoriteKey = UrlManager.fluoriteManager()["appKey"]!
+// appSecret
+let fluoriteSecret = UrlManager.fluoriteManager()["appSecret"]!
+// base Url
+let fluoriteUrl = UrlManager.fluoriteManager()["rootUrl"]!
+// accessToken
+let fluoriteToken = "\(fluoriteUrl)/token/get"
+// deviceList
+let fluoriteDeviceList = "\(fluoriteUrl)/device/list"
 

@@ -178,7 +178,7 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
         }else if (indexPath.row == 1) {
             return 120
         }
-        return 300
+        return 380
     }
     
     // UITableViewDelegate
@@ -199,8 +199,12 @@ class IndexViewController: BaseViewController, UITableViewDataSource, UITableVie
             // BoardListController
             let boardsVC = BoardListController(nibName: "BoardListController", bundle: nil)
             self.navigationController?.pushViewController(boardsVC, animated: true)
+        }else if (indexPath.item == 1) {
+            // monitoring
+            let monitorVC = MonitoringController(nibName: "MonitoringController", bundle: nil)
+            self.navigationController?.pushViewController(monitorVC, animated: true)
+            
         }
-        
     }
 
     // --- SDCycleScrollViewDelegate

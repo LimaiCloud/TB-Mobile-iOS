@@ -1,44 +1,24 @@
 //
-//  AppService.swift
+//  FormService.swift
 //  TB-Mobile-iOS
 //
-//  Created by dongmingming on 2018/4/4.
+//  Created by dongmingming on 2018/10/16.
 //  Copyright © 2018年 DongMingMing. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import AFNetworking
 
-// requet type
-enum HTTPMethod {
-    case GET
-    case POST
-    case PUT
-}
-
-/**
- *  An API structure is defined to define various network interfaces.
- */
-struct API {
-    // Define hostname
-    static let hostName = ""
-    // Define baseURL
-    static let baseURL = ""
-}
-
-class AppService: AFHTTPSessionManager {
+class FormService: AFHTTPSessionManager {
     
-     static let shareInstance: AppService = {
-        let manager = AppService()
-        manager.requestSerializer = AFJSONRequestSerializer()
-
+    static let shareInstance: FormService = {
+        let manager = FormService()
+        
         let setArr = NSSet(objects: "text/html", "application/json", "text/json")
         manager.responseSerializer.acceptableContentTypes = setArr as? Set<String>
-
+        
         // add HttpHeader
-        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
-       
+        manager.requestSerializer.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")        
 
         manager.requestSerializer.willChangeValue(forKey: "timeoutInterval")
         manager.requestSerializer.timeoutInterval = 30.0
@@ -52,16 +32,16 @@ class AppService: AFHTTPSessionManager {
      - parameter methodType:        request type(GET / POST)
      - parameter urlString:         url address
      - parameter parameters:
-                                    The parameter required to send a network                  request is a dictionary.
+     The parameter required to send a network                  request is a dictionary.
      
      - parameter resultBlock:       The completed callback.
      
      - parameter responseObject:    Callback parameters to return the requested   data.
-    
+     
      - parameter error:             If the request succeeds, then the error is nil.
      
      */
-
+    
     func request(methodType: HTTPMethod, urlString: String, parameters: [String : AnyObject]?, resultBlock:@escaping (Any?, Error?)->()) {
         
         // If the request succeeds, then the error is nil.

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		7221AF9C207EFD4C00CBEC1E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7221AF9B207EFD4B00CBEC1E /* LoginViewController.swift */; };
+		7227D36721758BA30088931C /* MonitoringController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7227D36521758BA30088931C /* MonitoringController.swift */; };
+		7227D36821758BA30088931C /* MonitoringController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7227D36621758BA30088931C /* MonitoringController.xib */; };
+		7227D36A217592360088931C /* fluoriteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7227D369217592360088931C /* fluoriteConfig.plist */; };
+		7227D36C2175BF050088931C /* FluoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7227D36B2175BF050088931C /* FluoriteModel.swift */; };
+		7227D36E2175CCA00088931C /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7227D36D2175CCA00088931C /* FormService.swift */; };
+		7227D3712175CF840088931C /* StartMonitorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7227D36F2175CF840088931C /* StartMonitorController.swift */; };
+		7227D3722175CF840088931C /* StartMonitorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7227D3702175CF840088931C /* StartMonitorController.xib */; };
 		722819C3208F2A1D00BED650 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722819C2208F2A1D00BED650 /* SwiftyJSON.swift */; };
 		723CF8AB20EB4EC500761F99 /* DetailDashboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723CF8A920EB4EC500761F99 /* DetailDashboardCell.swift */; };
 		723CF8AC20EB4EC500761F99 /* DetailDashboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 723CF8AA20EB4EC500761F99 /* DetailDashboardCell.xib */; };
@@ -114,6 +121,13 @@
 
 /* Begin PBXFileReference section */
 		7221AF9B207EFD4B00CBEC1E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7227D36521758BA30088931C /* MonitoringController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoringController.swift; sourceTree = "<group>"; };
+		7227D36621758BA30088931C /* MonitoringController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonitoringController.xib; sourceTree = "<group>"; };
+		7227D369217592360088931C /* fluoriteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = fluoriteConfig.plist; sourceTree = "<group>"; };
+		7227D36B2175BF050088931C /* FluoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluoriteModel.swift; sourceTree = "<group>"; };
+		7227D36D2175CCA00088931C /* FormService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormService.swift; sourceTree = "<group>"; };
+		7227D36F2175CF840088931C /* StartMonitorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMonitorController.swift; sourceTree = "<group>"; };
+		7227D3702175CF840088931C /* StartMonitorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartMonitorController.xib; sourceTree = "<group>"; };
 		722819C2208F2A1D00BED650 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		722819C6208F2DD700BED650 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		723CF8A920EB4EC500761F99 /* DetailDashboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDashboardCell.swift; sourceTree = "<group>"; };
@@ -351,6 +365,7 @@
 				7281938E2074613100A4D5F3 /* API.swift */,
 				724DC2BF20A4307C00604CD7 /* WebService.swift */,
 				727D25C920F843F1000593C5 /* UpdateToken.swift */,
+				7227D36D2175CCA00088931C /* FormService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -440,6 +455,10 @@
 				7272E121216AEA77002579ED /* DetailSupervisionController.xib */,
 				7250CE6F216C3D7100FFFF00 /* CreateSupController.swift */,
 				7250CE70216C3D7100FFFF00 /* CreateSupController.xib */,
+				7227D36521758BA30088931C /* MonitoringController.swift */,
+				7227D36621758BA30088931C /* MonitoringController.xib */,
+				7227D36F2175CF840088931C /* StartMonitorController.swift */,
+				7227D3702175CF840088931C /* StartMonitorController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -453,6 +472,7 @@
 				72FC56DD214F931300F4F9BC /* BoardsModel.swift */,
 				72FC56DF214FB1F700F4F9BC /* BoardsListModel.swift */,
 				7272E128216AF645002579ED /* SupervisionModel.swift */,
+				7227D36B2175BF050088931C /* FluoriteModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -501,6 +521,7 @@
 			children = (
 				726705F42109629400E00F52 /* address.plist */,
 				728391A22105B9320070656B /* UrlManager.swift */,
+				7227D369217592360088931C /* fluoriteConfig.plist */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -731,7 +752,6 @@
 				72D6B77E206DCDDC0068AA03 /* Frameworks */,
 				72D6B77F206DCDDC0068AA03 /* Resources */,
 				7DB28FB78AD9B1FF24212F64 /* [CP] Embed Pods Frameworks */,
-				7A9BE8987D9D634BAD6CE1B3 /* [CP] Copy Pods Resources */,
 				72E3E51D20E1E0720002A457 /* ShellScript */,
 			);
 			buildRules = (
@@ -787,6 +807,7 @@
 				7250CE72216C3D7100FFFF00 /* CreateSupController.xib in Resources */,
 				72D18C9C20D8F83E0003FCF9 /* DashboardCell.xib in Resources */,
 				72FC56DC214F82EA00F4F9BC /* BoardListController.xib in Resources */,
+				7227D36A217592360088931C /* fluoriteConfig.plist in Resources */,
 				72D6B78F206DCDDC0068AA03 /* LaunchScreen.storyboard in Resources */,
 				7250CE76216C89B500FFFF00 /* CreateSupCell.xib in Resources */,
 				723CF8AC20EB4EC500761F99 /* DetailDashboardCell.xib in Resources */,
@@ -801,6 +822,7 @@
 				72FAF9E22146674000D45A5E /* SupervisionCell.xib in Resources */,
 				724C31902101BC0F00910F38 /* BoardCastController.xib in Resources */,
 				72B5FC4420EDC7640073E703 /* WarningController.xib in Resources */,
+				7227D36821758BA30088931C /* MonitoringController.xib in Resources */,
 				726705F52109629400E00F52 /* address.plist in Resources */,
 				723CF8B420EB737F00761F99 /* SettingCell.xib in Resources */,
 				723CF8B020EB72D200761F99 /* SettingController.xib in Resources */,
@@ -809,6 +831,7 @@
 				72D18C9220D8E22E0003FCF9 /* MessageViewController.xib in Resources */,
 				7272E123216AEA77002579ED /* DetailSupervisionController.xib in Resources */,
 				72D6B78A206DCDDC0068AA03 /* Main.storyboard in Resources */,
+				7227D3722175CF840088931C /* StartMonitorController.xib in Resources */,
 				729D0E532150A585007A38F5 /* DialogCell.xib in Resources */,
 				72FAF9DE214664B300D45A5E /* SupervisionController.xib in Resources */,
 				723CF8B820EB7A4600761F99 /* ButtonCell.xib in Resources */,
@@ -850,24 +873,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7A9BE8987D9D634BAD6CE1B3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TB-Mobile-iOS/Pods-TB-Mobile-iOS-resources.sh",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TB-Mobile-iOS/Pods-TB-Mobile-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7DB28FB78AD9B1FF24212F64 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -877,6 +882,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TB-Mobile-iOS/Pods-TB-Mobile-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${PODS_ROOT}/EZOpenSDK/dist/EZOpenSDK/dynamicSDK/EZOpenSDKFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/JWTDecode/JWTDecode.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -888,6 +894,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZOpenSDKFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWTDecode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -914,6 +921,7 @@
 				728193892074610600A4D5F3 /* TabBarController.swift in Sources */,
 				724C318821018A9100910F38 /* SXColorLabel.m in Sources */,
 				72D18C9820D8F5450003FCF9 /* DashboardModel.swift in Sources */,
+				7227D36721758BA30088931C /* MonitoringController.swift in Sources */,
 				724C318921018A9100910F38 /* SXMarquee.m in Sources */,
 				7250CE71216C3D7100FFFF00 /* CreateSupController.swift in Sources */,
 				72D21465208D6EF50033C7B1 /* ApplicationViewController.swift in Sources */,
@@ -957,14 +965,17 @@
 				72EB19B72106C4840048F394 /* UIAlertBlock.swift in Sources */,
 				7283918F21056B8E0070656B /* MyURLProtocol.swift in Sources */,
 				72FC372620E33C3F00E1573E /* DateConvert.swift in Sources */,
+				7227D36E2175CCA00088931C /* FormService.swift in Sources */,
 				723CF8AF20EB72D200761F99 /* SettingController.swift in Sources */,
 				729D0E522150A585007A38F5 /* DialogCell.swift in Sources */,
 				7251189120A52863007C1C05 /* DeviceMonitorController.swift in Sources */,
 				7251189520A5294E007C1C05 /* DeviceMonitorCell.swift in Sources */,
+				7227D3712175CF840088931C /* StartMonitorController.swift in Sources */,
 				7281939A2074613E00A4D5F3 /* HUDManager.swift in Sources */,
 				72B90B7B20B7EB9E00FD2869 /* UserInfoCell.swift in Sources */,
 				7282CA4E2089E78A00355CF5 /* FuncCollectionCell.swift in Sources */,
 				728193992074613E00A4D5F3 /* HexString.swift in Sources */,
+				7227D36C2175BF050088931C /* FluoriteModel.swift in Sources */,
 				7251189E20A5736A007C1C05 /* TenantModel.swift in Sources */,
 				72D21463208D6ED20033C7B1 /* AddressViewController.swift in Sources */,
 				72E3E52520E2392C0002A457 /* DetailMonitorCell.swift in Sources */,
@@ -1119,6 +1130,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q73XH75CY8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "TB-Mobile-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1140,6 +1152,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q73XH75CY8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "TB-Mobile-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
