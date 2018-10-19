@@ -28,11 +28,10 @@ class AddressBookCell: UITableViewCell {
 
     }
     
-    
     func setupUI(_ model: ContactModel) {
         userName.text = model.name
         rankLab.text = model.title
-        titleLab.text = model.company
+        titleLab.text = "博萨集团"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,5 +39,4 @@ class AddressBookCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

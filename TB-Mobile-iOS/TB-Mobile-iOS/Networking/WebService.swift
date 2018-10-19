@@ -12,20 +12,20 @@ import AFNetworking
 public class WebServices: NSObject {
     
     let sessionManager = AFHTTPSessionManager()
-
+    
     // Initializer
     public override init() {
         super.init()
         
         let setArr = NSSet(objects: "text/html", "application/json", "text/json")
         sessionManager.responseSerializer.acceptableContentTypes = setArr as? Set<String>
-        
+
         // add HttpHeader
-        sessionManager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        sessionManager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+//        sessionManager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        sessionManager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        token = userDefault.object(forKey: "token") as! String
-        sessionManager.requestSerializer.setValue(bearereToken + token, forHTTPHeaderField: "X-Authorization")
+        print("------%@", httpHeader)
+        sessionManager.requestSerializer.setValue(bearereToken + token, forHTTPHeaderField: httpHeader)
         
         sessionManager.requestSerializer.willChangeValue(forKey: "timeoutInterval")
         sessionManager.requestSerializer.timeoutInterval = 30.0
@@ -49,9 +49,10 @@ public class WebServices: NSObject {
         if methodType == HTTPMethod.GET {
             
             sessionManager.get(urlString, parameters: parameters, progress: nil, success: successBlock, failure: failureBlock)
-        } else {
+        } else if methodType == HTTPMethod.POST {
             sessionManager.post(urlString, parameters: parameters, progress: nil, success: successBlock, failure: failureBlock)
-
+        }else {
+            sessionManager.put(urlString, parameters: parameters, success: successBlock, failure: failureBlock)
         }
     }
 }

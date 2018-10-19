@@ -20,8 +20,8 @@ class FunctionCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewD
     var delegate: FunctionCellDelegate?
     
     // default moduleArray
-    fileprivate var moduleArray: [(title: String, introduce: String, bgColor: String)] = [("OA", "办公更轻松", "5092f6"), ("ERP", "物料/财务查看更清晰！", "8e65ea"),("MES", "生产执行更快捷！", "4dcbf6"),("PLM", "流程控制更安全！", "26b980")]
-    
+//    fileprivate var moduleArray: [(title: String, introduce: String, bgColor: String)] = [("任务督办", "", ""), ("ERP", "物料/财务查看更清晰！", ""),("MES", "生产执行更快捷！", ""),("PLM", "流程控制更安全！", "")]
+    fileprivate var moduleArray = ["任务督办", "视频监控", "OA", "ERP", "MES", "PLM"]
     override func awakeFromNib() {
         super.awakeFromNib()
         //  Initialization code
@@ -33,10 +33,8 @@ class FunctionCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FuncCollectionCell", for: indexPath) as! FuncCollectionCell
-        cell.titleLab.text = self.moduleArray[indexPath.row].title
-        cell.introduceLab.text = self.moduleArray[indexPath.row].introduce
-        cell.bgView.backgroundColor = UIColor.hexStringToColor(hexString: self.moduleArray[indexPath.row].bgColor)
-        cell.iconImgView.image = UIImage(named: self.moduleArray[indexPath.row].title)
+//        cell.iconImgView.image = UIImage(named: self.moduleArray[indexPath.row].title)
+        cell.iconImgView.image = UIImage(named: self.moduleArray[indexPath.row])
         return cell
     }
     

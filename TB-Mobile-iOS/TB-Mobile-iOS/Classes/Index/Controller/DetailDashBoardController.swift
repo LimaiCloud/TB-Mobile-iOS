@@ -38,17 +38,15 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
         tableView.register(nib, forCellReuseIdentifier: "DetailDashboardCell")
         
         token = userDefault.object(forKey: "token") as! String
-        rootURL = userDefault.object(forKey: "rootAddress") as! String
         let urlArr = rootURL.components(separatedBy: "//")
         
-        print("apiUrl ===== %@", websocktURL + token)
         apiUrl = "ws://\(urlArr.last!)" + websocktURL + token
         let request = URLRequest(url: URL(string: apiUrl)!)
         socket = WebSocket(request: request)
         socket.delegate = self
         //you could do onPong as well.
         socket.connect()
-        
+
     }
     
     // WebSocketDelegate
@@ -56,18 +54,19 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
         print("websocket is connected")
         token = userDefault.object(forKey: "token") as! String
         
-        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"count,state\",\"startTs\":1529549464000,\"timeWindow\":604801000,\"interval\":1000,\"limit\":200,\"agg\":\"NONE\",\"cmdId\":1}],\"historyCmds\":[],\"attrSubCmds\":[]}")
+        let startTime = Int(DateConvert.currentTimeFormatter() * 1000 - 7 * 24 * 60 * 60 * 1000)
+        let dayTime = 7 * 24 * 60 * 60 * 1000
+        socket.write(string: "{\"tsSubCmds\":[{\"entityType\":\"DEVICE\",\"entityId\":\"\(entityId)\",\"keys\":\"daliy#数量,daliy#电量\",\"startTs\":\(startTime),\"timeWindow\":\(dayTime),\"interval\":1000,\"limit\":10,\"agg\":\"NONE\",\"cmdId\":1}],\"historyCmds\":[],\"attrSubCmds\":[]}")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("websocket is disconnected: \(String(describing: error?.localizedDescription))")
         // connect
-        socket.connect()
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("got some text: \(text)")
-
+        socket.disconnect()
         dataSource.removeAllObjects()
         infoDic.removeAllObjects()
         
@@ -82,6 +81,7 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
                 print("key: %@ ---- value: %@", key, value)
                 dataSource.add(key)
             }
+
             for i in 0..<dataSource.count {
                 let value = dataDic.object(forKey: dataSource[i])
                 infoDic.setValue(value, forKey: dataSource[i] as! String)
@@ -92,6 +92,7 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("got some data: \(data.count)")
+        
     }
     
     // UITableViewDataSource, UITableViewDelegate
@@ -107,9 +108,9 @@ class DetailDashBoardController: BaseViewController, WebSocketDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailDashboardCell", for: indexPath) as! DetailDashboardCell
         if (dataSource.count > 0) {
             let countArr = infoDic.object(forKey: dataSource[indexPath.section]) as? NSArray
-            cell.setSubViews(countArr!, type: "\(dataSource[indexPath.section])")
+            cell.setSubViews(countArr!.reversed() as NSArray, type: "\(dataSource[indexPath.section])")
         }
-
+       
         return cell
     }
     

@@ -18,8 +18,6 @@ let kScreen_W = UIScreen.main.bounds.size.width
 // Screen height
 let kScreen_H = UIScreen.main.bounds.size.height
 
-let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
 let userDefault = UserDefaults.standard
 
 
@@ -50,7 +48,7 @@ let selArr: [String] = ["首页-点击状态", "通讯录-点击状态", "应用
  *  Global variable --- API URL
  */
 // root URL
-var rootURL = ""
+let rootURL = UrlManager.manager()["base"]!
 // login URL
 let loginURL = "/api/auth/login"
 // acquire device list
@@ -64,18 +62,62 @@ let websocktURL = "/api/ws/plugins/telemetry?token="
 let bearereToken = "Bearer "
 // token
 var token = ""
+// boardsToken
+var boardsToken = ""
+// httpHeader
+var httpHeader = ""
 
 // tenant
 var tenantURL = "/api/tenant/"
 var dataBoardURL = "/dashboards"
 // dashboard
 var dataURL = "/api/tenant/dashboards?limit=10&textSearch="
+// customer
+var customerURL = "/api/customer/"
+let userURL = "/users?limit=10"
 
 // Bugly
 let buglyId = "bb68180a7a"
 
-// web
-let mobile_web = "10.2.5.98/mobile_web"
-
 // addressbook
-let contactURL = ""
+let addressUrl = UrlManager.manager()["contacts"]!
+let userToken = "/users?token="
+
+// serverTime
+let serverTimeURL = "/api/dashboard/serverTime"
+// broadcast
+let noticeUrl = UrlManager.manager()["notice"]!
+let broadcastURL = "/qiyue/wp-json/wp/v2/posts"
+
+// loading js
+let webUrl = "\(rootURL)/static/bundle.897b646d204a361b42e8.js"
+
+// -------------------- supervision platform -----------------------------------------
+// userId
+var userId = ""
+// boards
+let boardsUrl = UrlManager.manager()["boards"]!
+// users login
+let usersLogin = "\(boardsUrl)/users/login"
+// /api/users/
+let apiUsers = "\(boardsUrl)/api/users/"
+
+// /api/boards/
+let apiBoards = "\(boardsUrl)/api/boards/"
+let boardsList = "/boards"
+let list = "/lists/"
+let carsList = "/cards/"
+
+
+// ----------------------- fluorite platform ------------------------------------------
+// appKey
+let fluoriteKey = UrlManager.fluoriteManager()["appKey"]!
+// appSecret
+let fluoriteSecret = UrlManager.fluoriteManager()["appSecret"]!
+// base Url
+let fluoriteUrl = UrlManager.fluoriteManager()["rootUrl"]!
+// accessToken
+let fluoriteToken = "\(fluoriteUrl)/token/get"
+// deviceList
+let fluoriteDeviceList = "\(fluoriteUrl)/device/list"
+

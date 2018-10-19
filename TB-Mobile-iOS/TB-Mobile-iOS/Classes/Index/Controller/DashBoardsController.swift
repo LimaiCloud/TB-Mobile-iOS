@@ -14,10 +14,21 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
     // dataSource
     var dataSource =  NSMutableArray()
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        
+        let exp = userDefault.object(forKey: "exp") as! Double
+        let currentTime = DateConvert.currentTimeFormatter()
+        if currentTime > exp {
+            // token exptime
+            UpdateToken.refreshToken()
+            NotificationCenter.default.addObserver(self, selector: #selector(updateToken(_:)), name: NSNotification.Name(rawValue: "refreshToken"), object: nil)
+        }else {
+            // Network Requests
+            self.requestData()
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -34,9 +45,12 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
         // register cell
         let nib = UINib(nibName: "DashboardCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "DashboardCell")
-        
-        // request data
-        self .requestData()
+   
+    }
+    
+    @objc func updateToken(_ notification: Notification) {
+        // Network Requests
+        self.requestData()
     }
     
     // Network Requests
@@ -44,8 +58,8 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
         
         // show MBProgressHUD
         hudManager.showHud(self)
+        self.dataSource.removeAllObjects()
         
-        rootURL = userDefault.object(forKey: "rootAddress") as! String
         var scope = userDefault.object(forKey: "scopes") as! String
         let customerId = userDefault.object(forKey: "customerId") as! String
         var apiURL = ""
@@ -58,7 +72,9 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
             apiURL = rootURL + prefixURL + scope + suffixURL
             
         }
-//        let apiURL = rootURL + devicesListURL
+        
+        httpHeader = "X-Authorization"
+        token = userDefault.object(forKey: "token") as! String
         
         let manager = WebServices()
         
@@ -75,7 +91,6 @@ class DashBoardsController: BaseViewController, UITableViewDelegate, UITableView
                     self.dataSource.add(model)
                 }
                 
-                print("---------%@", self.dataSource)
                 self.tableView.reloadData()
                 
             }else {

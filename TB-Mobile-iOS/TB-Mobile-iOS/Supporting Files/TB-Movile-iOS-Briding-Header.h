@@ -17,6 +17,8 @@
 #import "SwiftyJSON.h"
 #import "SYMoreButtonView.h"
 #import <Bugly/Bugly.h>
-
+#import "UIColor+Wonderful.h"
+#import "SXMarquee.h"
+#import "SXHeadLine.h"
 
 #endif /* TB_Movile_iOS_Briding_Header_h */

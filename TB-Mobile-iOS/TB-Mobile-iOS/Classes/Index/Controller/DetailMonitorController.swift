@@ -43,10 +43,8 @@ class DetailMonitorController: BaseViewController, WebSocketDelegate, UITableVie
         self.view.backgroundColor = UIColor.hexStringToColor(hexString: "f7f7f7")
             
         token = userDefault.object(forKey: "token") as! String
-        rootURL = userDefault.object(forKey: "rootAddress") as! String
         let urlArr = rootURL.components(separatedBy: "//")
         
-        print("apiUrl ===== %@", websocktURL + token)
         apiUrl = "ws://\(urlArr.last!)" + websocktURL + token
         let request = URLRequest(url: URL(string: apiUrl)!)
         socket = WebSocket(request: request)
@@ -67,15 +65,14 @@ class DetailMonitorController: BaseViewController, WebSocketDelegate, UITableVie
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("websocket is disconnected: \(String(describing: error?.localizedDescription))")
-        // connect
-        socket.connect()
+      
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("got some text: \(text)")
         dataSource.removeAllObjects()
         infoArray.removeAllObjects()
-        
+        socket.disconnect()
         let jsonData:Data = text.data(using: .utf8)!
         
         let jsonDic = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
@@ -87,15 +84,16 @@ class DetailMonitorController: BaseViewController, WebSocketDelegate, UITableVie
                 print("key: %@ ---- value: %@", key, value)
                 dataSource.add(key)
             }
-            for i in 0..<dataSource.count {
-                let value = dataDic.object(forKey: dataSource[i])
-                let dataArr = NSMutableArray()
-                for dataValue in value as! NSArray {
-                    dataArr.add(dataValue)
+            if (dataSource.count > 0) {
+                for i in 0..<dataSource.count {
+                    let value = dataDic.object(forKey: dataSource[i])
+                    let dataArr = NSMutableArray()
+                    for dataValue in value as! NSArray {
+                        dataArr.add(dataValue)
+                    }
+                    infoDic.setValue(dataArr, forKey: dataSource[i] as! String)
                 }
-                infoDic.setValue(dataArr, forKey: dataSource[i] as! String)
-            }
-            
+            } 
         }
         self.tableView.reloadData()
     }

@@ -11,6 +11,7 @@ import UIKit
 class DashboardCell: UITableViewCell {
 
     @IBOutlet weak var titleLab: UILabel!
+    @IBOutlet weak var descLab: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

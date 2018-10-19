@@ -18,7 +18,8 @@ class DetailDashboardCell: UITableViewCell, ChartViewDelegate {
     // date
     var weekArr = NSMutableArray()
     var typeStr = ""
-    
+    var week = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -37,14 +38,14 @@ class DetailDashboardCell: UITableViewCell, ChartViewDelegate {
             weekArr.add(weekStr)
             productArr.add(productCount)
         }
-        
+
         for dateStr in weekArr {
             print("======%@", dateStr)
         }
+        
         // chartView
         self.setupUI()
     }
-
     
     // chartView
     func setupUI() {
@@ -59,6 +60,7 @@ class DetailDashboardCell: UITableViewCell, ChartViewDelegate {
         if (self.productArr.count > 0) {
             setChart(weekArr as! [String], values: productArr as! [Double])
         }
+
     }
     
     // set up charts
@@ -72,20 +74,25 @@ class DetailDashboardCell: UITableViewCell, ChartViewDelegate {
         
         let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "\(typeStr)：")
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
-        
+
         chartView.data = lineChartData
-        
+        print("dataPoints:====%@", dataPoints)
+
         // X
+       
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
+        
         chartView.xAxis.granularity = 1.0
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.drawGridLinesEnabled = false
+        
+        
         // Y
         chartView.rightAxis.drawAxisLineEnabled = false
-        
         chartView.rightAxis.enabled = false
+
         chartView.leftAxis.axisMinimum = 0
-        chartView.leftAxis.axisMaximum = 1
+        chartView.leftAxis.axisMaximum = 500
         
         // scale
         chartView.scaleXEnabled = false

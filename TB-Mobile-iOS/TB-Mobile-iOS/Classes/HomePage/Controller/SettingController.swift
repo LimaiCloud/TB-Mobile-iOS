@@ -74,24 +74,14 @@ class SettingController: BaseViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section == 1) {
             // logout
-            let alertController = UIAlertController(title: "退出登录",
-                                                    message: "您确定要退出登录吗", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-            
-            let okAction = UIAlertAction(title: "确定", style: .default, handler: {
-                action in
-               
+            UIAlertController.showAlert(presentController: self, title: "退出登录", message: "您确定要退出登录吗") { (UIAlertAction) in
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                 let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
                 userDefault.removeObject(forKey: "username")
                 userDefault.removeObject(forKey: "password")
                 userDefault.synchronize()
                 self.present(loginVC, animated: true, completion: nil)
-            })
-            
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
     
